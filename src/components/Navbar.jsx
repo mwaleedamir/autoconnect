@@ -5,11 +5,9 @@ import Button from "../utils/Button";
 
 const Navbar = () => {
   const Links = [
-    // { label: 'Home', to: '/' },
-    { label: "Showrooms", to: "/maketplace" },
+    { label: "Showrooms", to: "/marketplace" },
     { label: "Sell For me", to: "/sell-for-me" },
-    { label: "Assessories", to: "/shop" }
-    // className=" bg-gradient-to-tr from-blue-700 from-10% via-blue-400 via-30% to-blue-500 to-90% "
+    { label: "Assessories", to: "/assessories" }
   ];
 
   return (
@@ -18,8 +16,6 @@ const Navbar = () => {
       style={{
         backgroundImage: `url('/images/bg2.jpg')`
       }}
-
-      // md:w-[90%]
     >
       <div className="flex flex-col justify-between items-center">
         <div className="flex justify-between items-center p-3 text-sm text-white w-[80%] justify-self-center">
