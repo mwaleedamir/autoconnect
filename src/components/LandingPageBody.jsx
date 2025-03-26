@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import CarsLogoCards from "./CarsLogoCards";
 
 
-const LandingPageBody = () => {
+const LandingPageLayoutBody = () => {
   return (
     <div className="bg-gray-100  min-h-screen ">
       <Navbar />
@@ -105,4 +105,4 @@ const LandingPageBody = () => {
   );
 };
 
-export default LandingPageBody;
+export default LandingPageLayoutBody;

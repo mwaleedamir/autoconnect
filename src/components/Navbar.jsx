@@ -7,7 +7,7 @@ const Navbar = () => {
   const Links = [
     { label: "Showrooms", to: "/marketplace" },
     { label: "Sell For me", to: "/sell-for-me" },
-    { label: "Assessories", to: "/assessories" }
+    { label: "ShopLayout", to: "/ShopLayout" }
   ];
 
   return (
@@ -40,7 +40,7 @@ const Navbar = () => {
           </div>
         </div>
         <div />
-        <div className="flex flex-col gap-2  items-center justify-center justify-self-center w-[80%]  text-xs min-h-64 ">
+        <div className="flex flex-col gap-2  items-center justify-center justify-self-center w-[80%] text-xs min-h-64 ">
           <h1 className="text-white md:text-3xl lg:text-4xl  ">
             Find Your Dream Car
           </h1>

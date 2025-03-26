@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import { ThemeProvider } from './ThemeContext';
-import LandingPage from "./pages/LandingPage";
+import LandingPageLayout from "./pages/LandingPageLayout";
 import Showrooms from "./pages/Showrooms";
 import SellForMe from "./pages/SellForMe";
-import Assessories from "./pages/Assessories";
+import ShopLayout from "./pages/ShopLayout";
 // import PublicLayout from './layouts/PublicLayout';
 // import DealerLayout from './layouts/DealerLayout';
 // import MarketPlaceLayout from './layouts/MarketPlaceLayout';
@@ -24,14 +24,22 @@ function App() {
     // },
     {
       path: "/",
-      element: <LandingPage />,
+      element: <LandingPageLayout />,
+      // children: [
+      //   { path: "signup", element: <Signup /> },
+      //   { path: "login", element: <Login /> }
+      // ]
+    },
+    { path: "/shop", element: <ShopLayout /> },
+    { path: "/sell-for-me", element: <SellForMe /> },
+    {
+      path: "/marketplace",
+      element: <Showrooms />,
       children: [
-        { path: "marketplace", element: <Showrooms /> },
-        { path: "sell-for-me", element: <SellForMe /> },
-        { path: "assessories", element: <Assessories /> },
+        // { path: "marketplace/:marketplace", element: <MarketPlaceLayout /> }
       ]
     }
-    // {
+
     //   path: '/dealer',
     //   element: <DealerLayout />,
     //   children: [{ path: 'dashboard', element: <Dashboard /> }],

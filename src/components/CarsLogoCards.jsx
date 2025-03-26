@@ -25,7 +25,7 @@ const CarsLogoCards = () => {
             slidesToScroll1024={1}
             slidesToScroll600={1}
             classNameImages="w-full h-64 object-cover p-2 opacity-80 "
-            classNameLogos="w-10 h-10 bg-white rounded-full z-10 absolute top-4 left-[38%]"
+            classNameLogos="w-12 bg-white h-12 rounded-sm shadow-lg z-10 absolute top-6 left-[43%]"
           />
         </div>
       </div>
