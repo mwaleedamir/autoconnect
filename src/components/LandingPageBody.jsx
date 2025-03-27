@@ -90,7 +90,7 @@ const LandingPageLayoutBody = () => {
       {/* Footer */}
       <footer className="py-4 bg-gray-800 text-white text-center">
         <p>
-          &copy; {new Date().getFullYear()} AutoConnectPK. All rights reserved.
+          &copy; {new Date().getFullYear()} AutoConnect. All rights reserved.
         </p>
         <div className="mt-2">
           <a href="/terms" className="text-yellow-400 hover:underline mx-2">

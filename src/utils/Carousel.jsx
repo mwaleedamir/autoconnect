@@ -69,7 +69,6 @@ const Carousel = ({
         {carouselItems.map(item =>
           <div key={uuidv4()} className="p-2">
             <div className="bg-gray-100 relative rounded-lg overflow-hidden shadow-md">
-              {/* {item.logo && console.log(classNameLogos)} */}
               {item.logo &&
                 <img
                   className={classNameLogos}
