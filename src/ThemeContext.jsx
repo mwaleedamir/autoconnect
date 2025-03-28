@@ -10,7 +10,7 @@ export const ThemeProvider = ({ children }) => {
     if (typeof window !== "undefined") {
       try {
         const savedMode = localStorage.getItem('darkMode');
-        return savedMode === 'true';
+        return savedMode === 'false';
       } catch (error) {
         // Handle case where localStorage is unavailable
         return false;

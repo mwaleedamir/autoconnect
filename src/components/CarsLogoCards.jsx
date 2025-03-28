@@ -24,8 +24,8 @@ const CarsLogoCards = () => {
             slidesToShow600={1}
             slidesToScroll1024={1}
             slidesToScroll600={1}
-            classNameImages="w-full h-64 object-cover p-2 opacity-90 "
-            classNameLogos="w-12 bg-white h-12 rounded-sm shadow-white shadow-md z-10 absolute top-6 left-[43%]"
+            classNameImages="w-full h-64 object-cover p-2  "
+            classNameLogos="w-12 bg-gray-200 h-12 rounded-sm shadow-white shadow-md z-10 absolute top-6 left-[40%] max-sm:left-[43%]"
           />
         </div>
       </div>
