@@ -18,7 +18,7 @@ const TopNavbar = () => {
         backgroundImage: `url('/images/bg2.jpg')`
       }}
     >
-      <div className="flex w-[80%] max-sm:w-[100%] md:w-[95%] lg:w-[80%] justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
+      <div className="flex w-[80%] max-sm:w-[100%] lg:w-[80%] justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
         <div className="text-center">
           <Link to="/">
             <p className="">AutoCorner</p>

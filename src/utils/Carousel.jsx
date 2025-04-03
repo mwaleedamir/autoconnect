@@ -18,7 +18,12 @@ const Carousel = ({
   slidesToScroll600,
   carouselItems,
   classNameImages,
-  classNameLogos
+  classNameLogos,
+  classNameTopDiv,
+  arrows,
+  classNameOuterDiv,
+  classNameTopMostDiv,
+  classNameSlider
 }) => {
   const settings = {
     dots: dots,
@@ -27,17 +32,8 @@ const Carousel = ({
     slidesToShow: slidesToShow,
     slidesToScroll: slidesToScroll,
     autoplay: autoplay,
+    arrows: arrows,
     autoplaySpeed: autoplaySpeed,
-    // prevArrow: (
-    //   <div className="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 -ml-4 z-10 absolute top-1/2 transform -translate-y-1/2">
-    //     ←
-    //   </div>
-    // ),
-    // nextArrow: (
-    //   <div className="bg-green-500 text-white rounded-full p-2 hover:bg-green-600 -mr-4 z-10 absolute top-1/2 transform -translate-y-1/2 right-0">
-    //     →
-    //   </div>
-    // ),
     responsive: [
       {
         breakpoint: 1024,
@@ -64,11 +60,11 @@ const Carousel = ({
   };
 
   return (
-    <div className="container">
-      <Slider {...settings}>
+    <div className={classNameOuterDiv}>
+      <Slider className={classNameSlider} {...settings}>
         {carouselItems.map(item =>
-          <div key={uuidv4()} className="p-2">
-            <div className="bg-gray-100 relative rounded-lg overflow-hidden shadow-md">
+          <div key={uuidv4()} className={classNameTopMostDiv}>
+            <div className={classNameTopDiv}>
               {item.logo &&
                 <img
                   className={classNameLogos}
