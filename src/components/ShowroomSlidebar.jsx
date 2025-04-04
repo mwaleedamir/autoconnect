@@ -16,7 +16,7 @@ const ShowroomSidebar = () => {
           </button>
           <input
             type="text"
-            className="container h-10 px-1 py-2  outline-none transition-all duration-300"
+            classNa me="container h-10 px-1 py-2  outline-none transition-all duration-300"
             placeholder="Search..."
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
@@ -26,7 +26,10 @@ const ShowroomSidebar = () => {
         <SidebarFolder name="Price" />
         <SidebarFolder name="Make" />
         <SidebarFolder name="Model" />
-        <SidebarFolder name="" />
+        <SidebarFolder name="Catagories" />
+        <SidebarFolder name="Milage" />
+        <SidebarFolder name="Engine Capacity" />
+        <SidebarFolder name="Location" />
       </div>
     </aside>
   );

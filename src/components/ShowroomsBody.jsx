@@ -1,46 +1,12 @@
-import React, { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
-// import { get } from "../Services/ApiEndPoint";
+import React, { useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { useParams } from "react-router-dom";
 import { BsFillGridFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa6";
-import Carousel from "../utils/Carousel";
 import { CarsListings } from "../consts/CarsLists";
 import Button from "../utils/Button";
 
 const ShowroomsBody = () => {
-  //   const userId = useSelector(state => state.auth.user);
-  // const [heartStatus, setHeartStatus] = useState({});
   const [grid, setGrid] = useState(false);
-  // const [Cars, setCars] = useState();
-  const { id } = useParams();
-  // setCars(prev => ({...prev, CarsListings}))
-
-  console.log("CarsListings", CarsListings);
-  // console.log("Cars",Cars)
-  // const handletoggleHeartColor = carId => {
-  //   setHeartStatus(prevState => ({
-  //     ...prevState,
-  //     [carId]: !prevState[carId]
-  //   }));
-  // };
-
-  //   useEffect(
-  //     () => {
-  //       const GetingData = async () => {
-  //         try {
-  //           const res = await get("/api/create");
-  //           const filterCars = res.data.filter(usr => usr.userId);
-  //           setCars(filterCars);
-  //         } catch (error) {
-  //           console.error("Error fetching data", error);
-  //         }
-  //       };
-  //       GetingData();
-  //     },
-  //     [userId]
-  //   );
 
   return (
     <div className="">
@@ -48,15 +14,15 @@ const ShowroomsBody = () => {
         <button
           onClick={() => setGrid(true)}
           className={`flex items-center px-2 py-1 rounded-md border ${grid
-            ? "bg-blue-500 text-white border-blue-500"
-            : "bg-gray-200 text-gray-700 border-gray-300 hover:bg-gray-300"}`}
+            ? "bg-[#6b451a] hover:bg-[#47341d] text-white "
+            : "bg-gray-200 text-gray-700  hover:bg-gray-300"}`}
         >
           <BsFillGridFill />
         </button>
         <button
           onClick={() => setGrid(false)}
           className={`flex items-center px-2 py-1 rounded-md border ${!grid
-            ? "bg-blue-500 text-white border-blue-500"
+            ? "bg-[#6b451a] hover:bg-[#47341d] text-white "
             : "bg-gray-200 text-gray-700 border-gray-300 hover:bg-gray-300"}`}
         >
           <FaListUl />
@@ -64,9 +30,9 @@ const ShowroomsBody = () => {
       </div>
 
       <div
-        className={`grid gap-3 min-h-screen   ${grid
+        className={`grid gap-3 min-h-screen  ${grid
           ? `grid-cols-3 w-full max-sm:grid-cols-2`
-          : `w-full grid-cols-1 max-w-screen max-sm:px-0 lg:px-8`}`}
+          : `w-full grid-cols-1 max-w-screen max-sm:px-0 lg:px-8 px-2`}`}
       >
         {CarsListings.length > 0
           ? CarsListings.map(car =>
@@ -132,7 +98,7 @@ const ShowroomsBody = () => {
                       {car.carPrice} PKR
                     </p>
                     <Button
-                      className="transition duration-300  ease-in-out transform hover:scale-110 p"
+                      className="transition duration-300 bg-white hover:bg-white ease-in-out transform hover:scale-110 p"
                       name={<FaLongArrowAltRight size={26} />}
                     />
                   </div>
@@ -143,83 +109,8 @@ const ShowroomsBody = () => {
               No car data found
             </p>}
       </div>
-      {/* </div> */}
-
-      {/* <div className="min-h-screen py-3 mx-3">
-            <div className="">
-              {CarsListings.length > 0
-                ? CarsListings.map(car =>
-                    <div
-                      key={car._id}
-                      className="flex flex-col md:flex-row dark:bg-gray-700 border border-gray-300 dark:border-gray-600 shadow-xl rounded-lg overflow-hidden mx-auto"
-                    >
-                     
-                      <div className="w-full container text-center p-3">
-                        {car.images && car.images.length > 0
-                          ? <img className="size-32" src={car.images} alt="" />
-                              
-                            
-                          : <div className="flex items-center justify-center h-60 bg-gray-600 dark:bg-gray-600">
-                              <p className="text-gray-500 dark:text-gray-400">
-                                No image available
-                              </p>
-                            </div>}
-                      </div>
-
-                    
-                      <div className="w-full p-3 flex flex-col justify-between">
-                        <div className="flex items-center justify-between">
-                          <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-                            {car.carMake} {car.carName}
-                          </h2>
-                          <p className="text-gray-700 dark:text-gray-300">
-                            <span className="font-semibold">
-                              {car.carPrice} PKR
-                            </span>
-                          </p>
-                        </div>
-                        <p className="font-semibold px-3 py-2">
-                          {car.model}
-                        </p>
-                        <div className="mt-4 space-y-2">
-                          <div className="flex gap-4">
-                            <p className="font-semibold px-3 py-2">
-                              {car.mileage} Km
-                            </p>
-                            <p className="font-semibold px-3 py-2">
-                              {car.engineCapacity} CC
-                            </p>
-
-                            <p className="font-semibold px-3 py-2">
-                              {car.color}
-                            </p>
-                            <p className="font-semibold px-3 py-2 dark:text-gray-300">
-                              {car.varients}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                : <p className="text-center text-gray-700 dark:text-gray-300 col-span-2">
-                    No car data found
-                  </p>}
-            </div>
-          </div> */}
     </div>
   );
 };
 
 export default ShowroomsBody;
-
-{
-  /* {car.images.map((image, index) =>
-                                <div key={index}>
-                                  <img
-                                    className="h-40 object-cover rounded-md"
-                                    src={`http://localhost:8000/images/${image}`}
-                                    alt={`${car.carName} - ${car.carMake}`}
-                                  />
-                                </div>
-                              )} */
-}

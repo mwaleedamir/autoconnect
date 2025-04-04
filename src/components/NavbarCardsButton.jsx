@@ -7,12 +7,10 @@ import { v4 as uuidv4 } from "uuid";
 const NavbarCardsButton = () => {
   const cards = [
     { svg: <FaCarSide />, name: "Showrooms", to: "/marketplace" },
-    { svg: <FaCarSide />, name: "Sell For me", to: "/sell-for-me" },
+    { svg: <FaCarSide />, name: "Sell", to: "/sell-for-me" },
     { svg: <AiOutlineShop />, name: "Shop", to: "/shop" },
     { svg: <AiOutlineShop />, name: "More", to: "/shop" }
   ];
-  // md:w-[90%]
-  // min-lg:w-32 max-sm:px-2 max-sm:py-1
   return (
     <div className="max-sm:w-[90%] flex gap-2 max-sm:gap-1 justify-center items-center justify-self-center">
       {cards.map(card =>
