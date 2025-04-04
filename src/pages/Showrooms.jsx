@@ -8,7 +8,7 @@ const Showrooms = () => {
   return (
     <div className="">
       <TopNavbar/>
-      <div className="w-[80%] justify-self-center my-20 flex">
+      <div className="w-[80%] justify-self-center my-20 gap-3 max-sm:w-full max-sm:gap-0 max-sm:my-2 flex">
         <ShowroomSidebar />
         <div className="flex-1">
           <ShowroomsBody />

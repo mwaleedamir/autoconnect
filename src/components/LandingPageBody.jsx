@@ -11,8 +11,8 @@ const LandingPageLayoutBody = () => {
       <CarsLogoCards/>
       
       {/* Features Section */}
-      <section className="py-16 px-6 bg-white dark:bg-gray-800 text-center">
-        <h2 className="text-3xl font-bold text-blue-800 dark:text-yellow-400 mb-8">
+      <section className="py-16 px-6 bg-white  text-center">
+        <h2 className="text-3xl font-bold text-blue-800  mb-8">
           Why Choose Us?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -35,15 +35,15 @@ const LandingPageLayoutBody = () => {
           ].map((item, index) =>
             <div
               key={index}
-              className="p-6 rounded-lg shadow-lg bg-gray-100 dark:bg-gray-700"
+              className="p-6 rounded-lg shadow-lg bg-gray-100 "
             >
               <span className="text-yellow-400 text-4xl mb-4">
                 {item.icon}
               </span>
-              <h3 className="text-blue-800 dark:text-yellow-400 font-bold text-xl mb-2">
+              <h3 className="text-blue-800  font-bold text-xl mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 ">
                 {item.desc}
               </p>
             </div>
@@ -52,17 +52,17 @@ const LandingPageLayoutBody = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 px-6 bg-gray-100 dark:bg-gray-900 text-center">
-        <h2 className="text-3xl font-bold text-blue-800 dark:text-yellow-400 mb-8">
+      <section className="py-16 px-6 bg-gray-100  text-center">
+        <h2 className="text-3xl font-bold text-blue-800  mb-8">
           What Our Users Say
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {["John Doe", "Jane Smith", "Alex Johnson"].map((name, index) =>
             <div
               key={index}
-              className="p-6 rounded-lg shadow-lg bg-white dark:bg-gray-800"
+              className="p-6 rounded-lg shadow-lg bg-white "
             >
-              <p className="text-gray-600 dark:text-gray-300 italic mb-4">
+              <p className="text-gray-600  italic mb-4">
                 "AutoConnectPK made my car search so much easier!"
               </p>
               <p className="text-blue-800 font-bold">

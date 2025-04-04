@@ -6,12 +6,7 @@ import NavbarCar from "./NavbarCar";
 
 const Navbar = () => {
   return (
-    <div
-      className="bg-cover bg-center bg-no-repeat min-h-64 max-sm:min-h-72"
-      style={{
-        backgroundImage: `url('/images/bg2.jpg')`
-      }}
-    >
+    <div className="bg-[url(/images/bg2.jpg)] bg-cover bg-center bg-no-repeat min-h-64 max-sm:min-h-72  bg-blend-lighten md:bg-blend-darken">
       <TopNavbar />
 
       <div className="flex flex-col justify-between items-center w-[80%] max-sm:w-[100%] justify-self-center  ">
@@ -26,14 +21,14 @@ const Navbar = () => {
               type="text"
             />
             {/* min-lg:w-58 */}
-            <div className="flex gap-2 w-[60%] max-sm:w-full ">
+            <div className="flex gap-2 w-[60%] max-sm:container">
               <input
                 className="flex-2  bg-white outline-0 text-black rounded-sm px-3 py-3 "
                 placeholder="Cars"
                 type="text"
               />
               <Button
-                className="flex-1  bg-indigo-600 flex justify-center items-center px-7 py-3 rounded-sm text-white "
+                className="flex-1 bg-indigo-600 flex justify-center overflow-none xs:px-4 max-sm:px-7 items-center px-7 py-3 rounded-sm text-white "
                 name="Search"
               />
             </div>
@@ -50,7 +45,7 @@ const Navbar = () => {
         <NavbarCar />
         </div>
       </div> */}
-    </div>
+        </div>
   );
 };
 

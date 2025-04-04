@@ -79,7 +79,7 @@ const Carousel = ({
                 />}
               {item.title &&
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold">
+                  <h3 className="text-lg font-semibold ">
                     {item.title}
                   </h3>
                 </div>}

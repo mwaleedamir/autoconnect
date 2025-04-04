@@ -1,12 +1,12 @@
- export const ShowroomsName = [
-    { "showroomName": "Pak Auto Gallery" },
-    { "showroomName": "Royal Motors Pakistan" },
-    { "showroomName": "Karachi Elite Cars" },
-    { "showroomName": "Lahore Auto Hub" },
-    { "showroomName": "Islamabad Dream Wheels" },
-    { "showroomName": "Punjab Car Deals" },
-    { "showroomName": "Sindh Luxury Motors" },
-    { "showroomName": "Peshawar Auto Zone" },
-    { "showroomName": "Faisalabad Prime Motors" },
-    { "showroomName": "Multan Speed Star" }
-  ]
+export const ShowroomsName = [
+  { _id: 1, showroomName: "Pak Auto Gallery" },
+  { _id: 2, showroomName: "Royal Motors Pakistan" },
+  { _id: 3, showroomName: "Karachi Elite Cars" },
+  { _id: 4, showroomName: "Lahore Auto Hub" },
+  { _id: 5, showroomName: "Islamabad Dream Wheels" },
+  { _id: 6, showroomName: "Punjab Car Deals" },
+  { _id: 7, showroomName: "Sindh Luxury Motors" },
+  { _id: 8, showroomName: "Peshawar Auto Zone" },
+  { _id: 9, showroomName: "Faisalabad Prime Motors" },
+  { _id: 10, showroomName: "Multan Speed Star" }
+];

@@ -18,14 +18,14 @@ const TopNavbar = () => {
         backgroundImage: `url('/images/bg2.jpg')`
       }}
     >
-      <div className="flex w-[80%] max-sm:w-[100%] lg:w-[80%] justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
+      <div className="flex w-[80%] max-sm:w-[100%] justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
         <div className="text-center">
           <Link to="/">
             <p className="">AutoCorner</p>
             <p className="text-white text-[12px]">Let's Connect together</p>
           </Link>
         </div>
-        <div className="hidden md:flex gap-3 items-center">
+        <div className="hidden min-md:flex gap-3 items-center">
           {Links.map(link =>
             <Link key={link.to} to={link.to}>
               {" "}{link.label}{" "}
@@ -33,7 +33,7 @@ const TopNavbar = () => {
           )}
           <Button className="px-8 py-1 bg-indigo-400 rounded-sm" name="Login" />
         </div>
-        <div className="sm:flex md:hidden">
+        <div className="sm:flex min-md:hidden">
           <button
             onClick={() => setToggle(!toggle)}
             className="sm:pr-3 focus:outline-none"

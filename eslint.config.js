@@ -20,14 +20,7 @@ export default [
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
-    theme: {
-      fontFamily: {
-        // 'sans': ['Roboto', 'ui-sans-serif', 'system-ui'],
-        'mono': ['Tektur', 'ui-sans-serif', 'system-ui'],
-        // 'serif': ['Merriweather', 'ui-serif', 'Georgia'],
-        // Add more font families as needed
-      },
-    },
+    
     rules: {
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,

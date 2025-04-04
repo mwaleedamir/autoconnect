@@ -2,20 +2,6 @@ import React from "react";
 import Carousel from "../utils/Carousel";
 
 const NavbarCar = () => {
-  // dots,
-  // infinite,
-  // speed,
-  // slidesToShow,
-  // slidesToScroll,
-  // autoplay,
-  // autoplaySpeed,
-  // slidesToShow1024,
-  // slidesToScroll1024,
-  // slidesToShow600,
-  // slidesToScroll600,
-  // carouselItems,
-  // classNameImages,
-  // classNameLogos
   const Images = [
     { image: "/images/toyota.jpg" },
     { image: "/images/bmw.jpg" },

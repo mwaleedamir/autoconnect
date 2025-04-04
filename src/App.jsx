@@ -49,7 +49,9 @@ function App() {
   return (
     // <ThemeProvider>
     // </ThemeProvider>
+    <div className="font-mono ">
     <RouterProvider router={router} />
+    </div>
   );
 }
 

@@ -4,8 +4,8 @@ import { carouselItems } from "../consts/CarsLogos";
 
 const CarsLogoCards = () => {
   return (
-    <div className="">
-      <div className="w-[80%] justify-self-center">
+    <div className="bg-white">
+      <div className="w-[80%] justify-self-center font-"> 
         <div className="flex flex-col justify-center items-center pt-6">
           <h1 className="text-2xl font-bold">Car brands</h1>
           <p className="text-xl ">Buy your favourite one</p>
@@ -28,7 +28,7 @@ const CarsLogoCards = () => {
             classNameOuterDiv=""
             classNameTopMostDiv=""
             classNameImages="w-full h-48 object-cover p-2 "
-            classNameLogos="w-10 h-10 bg-gray-200 rounded-sm shadow-white shadow-md z-10 absolute top-6 left-[40%] max-sm:left-[43%]"
+            classNameLogos="w-10 h-10 bg-gray-100 rounded-sm shadow-white shadow-md z-10 absolute top-6 left-[40%] max-sm:left-[43%]"
             classNameTopDiv="relative  rounded-lg overflow-hidden shadow-md"
           />
         </div>

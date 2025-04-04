@@ -18,8 +18,8 @@ const NavbarCardsButton = () => {
       {cards.map(card =>
         <div key={uuidv4()} className="min-h-10 max-sm:py-1 max-sm:px-1 bg-white text-black px-4 py-3 rounded-md">
           <Link  to={card.to}>
-            <div className="flex flex-1 max-sm:flex-col max-sm:text-sm justify-center gap-2 items-center flex-wrap ">
-              <div className="text-xl ">
+            <div className="flex flex-1 max-sm:flex-col max-sm:text-sm  justify-center gap-2 items-center flex-wrap ">
+              <div className="text-xl max-sm:text-md ">
                 {card.svg}
               </div>
               <h2>
