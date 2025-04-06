@@ -11,7 +11,9 @@ const TopNavbar = ({ className }) => {
   const Links = [
     { svg: <FaCarSide />, label: "Showrooms", to: "/marketplace" },
     { svg: <FaCarSide />, label: "Sell", to: "/sell-for-me" },
-    { svg: <AiOutlineShop />, label: "Shop", to: "/shop" }
+    { svg: <AiOutlineShop />, label: "Shop", to: "/shop" },
+    { svg: <MdOutlinePersonOutline />, label: "Login", to: "/login" }
+   
   ];
 
   return (
@@ -33,9 +35,7 @@ const TopNavbar = ({ className }) => {
               {link.svg} {link.label}{" "}
             </Link>
           )}
-          <button className="rounded-sm flex gap-1 items-center">
-            <MdOutlinePersonOutline /> Login{" "}
-          </button>
+         
         </div>
         <div className="sm:flex min-md:hidden">
           <button

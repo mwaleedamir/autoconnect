@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { AiOutlineEnter } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import SidebarFolder from "../utils/SidebarFolder";
 import { IoSearchOutline } from "react-icons/io5";
 
@@ -16,7 +14,8 @@ const ShowroomSidebar = () => {
           </button>
           <input
             type="text"
-            classNa me="container h-10 px-1 py-2  outline-none transition-all duration-300"
+            classNa
+            me="container h-10 px-1 py-2  outline-none transition-all duration-300"
             placeholder="Search..."
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}

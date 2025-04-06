@@ -30,8 +30,8 @@ const ShowroomsBody = () => {
       </div>
 
       <div
-        className={`grid gap-3 min-h-screen  ${grid
-          ? `grid-cols-3 w-full max-sm:grid-cols-2`
+        className={`grid  ${grid
+          ? `grid-cols-5 gap-2 w-full max-sm:grid-cols-2`
           : `w-full grid-cols-1 max-w-screen max-sm:px-0 lg:px-8 px-2`}`}
       >
         {CarsListings.length > 0
