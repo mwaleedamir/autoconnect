@@ -104,7 +104,7 @@ const Signup = () => {
     <div className={``}>
       <nav className="px-4 py-3 flex justify-between items-center shadow-md sm:text-sm">
         <Link to="/">
-          <FaArrowLeftLong className="text-gray-500" />
+          <FaArrowLeftLong className="hover:text-xl" />
         </Link>
         <div className="flex  gap-2">
           <h1 className="font-medium text-lg cursor-pointer hidden sm:block">
@@ -138,7 +138,7 @@ const Signup = () => {
                       checked={radio.checked}
                       onChange={handleChange}
                     />
-                    <div className="w-3 h-3 rounded-full border-2 border-gray-400 peer-checked:border-[#6b451a] peer-checked:bg-[#6b451a] transition" />
+                    <div className="w-3 h-3 rounded-full border-2 border-[#6b451a] peer-checked:outline-[#6b451a] peer-checked:border-[#6b451a] peer-checked:bg-[#6b451a] transition" />
                     <span className="ml-2 ">
                       {radio.labelName}
                     </span>

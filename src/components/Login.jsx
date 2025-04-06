@@ -15,6 +15,22 @@ const Login = () => {
     userType: "customer"
   });
 
+  const signupRadio = [
+    {
+      labelName: "Customer",
+      name: "userType",
+      type: "radio",
+      value: "customer",
+      checked: formData.userType === "customer"
+    },
+    {
+      labelName: "Owner",
+      name: "userType",
+      type: "radio",
+      value: "owner",
+      checked: formData.userType === "owner"
+    }
+  ];
   const handleChange = e => {
     const { id, value, type, checked, name } = e.target;
     setFormData({
@@ -53,16 +69,36 @@ const Login = () => {
         <div className="w-full max-w-lg bg-white border border-gray-300 rounded-lg shadow-lg  ">
           <form onSubmit={handleSubmit} className="p-6 space-y-6">
             <div>
-              <h1 className="flex justify-center font-semibold text-xl ">
+              <h1 className="flex justify-center font-semibold text-xl pb-6 ">
                 Log in to your account
               </h1>
-              <div className="flex justify-center mt-4">
+              <div className="flex justify-center">
+              {signupRadio.map(radio =>
+                <div className=" flex  justify-center ">
+                  <label className="flex items-center mr-6">
+                    <input
+                      type={radio.type}
+                      name={radio.name}
+                      value={radio.value}
+                      className="hidden peer"
+                      checked={radio.checked}
+                      onChange={handleChange}
+                    />
+                    <div className="w-3 h-3 rounded-full border-2 border-[#6b451a] peer-checked:outline-[#6b451a] peer-checked:border-[#6b451a] peer-checked:bg-[#6b451a] transition" />
+                    <span className="ml-2 ">
+                      {radio.labelName}
+                    </span>
+                  </label>
+                </div>
+              )}
+            </div>
+              {/* <div className="flex justify-center mt-4">
               <label className="flex items-center mr-6">
                   <input
                     type="radio"
                     name="userType"
                     value="customer"
-                    className="form-radio"
+                    className="hidden peer"
                     checked={formData.userType === 'customer'}
                     onChange={handleChange}
                   />
@@ -73,13 +109,13 @@ const Login = () => {
                     type="radio"
                     name="userType"
                     value="owner"
-                    className="form-radio"
+                    className="hidden peer"
                     checked={formData.userType === "owner"}
                     onChange={handleChange}
                   />
                   <span className="ml-2">Owner</span>
                 </label>
-              </div>
+              </div> */}
             </div>
             <div className="flex flex-col gap-6 ">
               <div className="">
