@@ -8,7 +8,7 @@ export const CarsListings = [
       engineCapacity: 1800,
       color: "White",
       varients: "Altis Grande",
-      carPrice: "4,200,000",
+      carPrice: "42 Lacs",
       images: "/images/toyota.jpg"
     },
     {
@@ -20,7 +20,7 @@ export const CarsListings = [
       engineCapacity: 1500,
       color: "Black",
       varients: "Turbo RS",
-      carPrice: "5,000,000",
+      carPrice: "50 Lacs",
       images: "/images/toyota.jpg"
     },
     {
@@ -32,7 +32,7 @@ export const CarsListings = [
       engineCapacity: 660,
       color: "Red",
       varients: "VXL AGS",
-      carPrice: "2,200,000",
+      carPrice: "22 Lacs",
       images: "/images/toyota.jpg"
     },
     {
@@ -44,7 +44,7 @@ export const CarsListings = [
       engineCapacity: 2000,
       color: "Blue",
       varients: "AWD",
-      carPrice: "7,000,000",
+      carPrice: "70 Lacs",
       images: "/images/toyota.jpg"
     },
     {
@@ -56,7 +56,7 @@ export const CarsListings = [
       engineCapacity: 2000,
       color: "Silver",
       varients: "Ultimate",
-      carPrice: "6,500,000",
+      carPrice: "65 Lacs",
       images: "/images/toyota.jpg"
     }
   ];

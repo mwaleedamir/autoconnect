@@ -8,6 +8,9 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoPersonOutline } from "react-icons/io5";
 import { BsShop } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
+import { useDispatch } from "react-redux";
+import { createUser } from "../features/userSignupSlice";
+import { v4 as uuidv4 } from "uuid"
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,11 +21,15 @@ const Signup = () => {
     company: "",
     phone: "",
     email: "",
+    showroomName: "",
+    address: "",
     password: "",
     confirmPassword: "",
     agreeTerms: false,
     userType: "customer"
   });
+
+  const dispatch = useDispatch();
 
   const signupRadio = [
     {
@@ -77,27 +84,30 @@ const Signup = () => {
     setFormData({
       ...formData,
       [id]: type === "checkbox" ? checked : value,
-      [name]: type === "radio" ? value : undefined // Handle radio buttons
+      [name]: type === "radio" ? value : undefined 
     });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log(formData);
-    setFormData({
-      firstName: "",
+    const result = dispatch(createUser(formData))
+    if(result){
+      setFormData({
+        firstName: "",
       lastName: "",
       company: "",
       phone: "",
       email: "",
-      showroomName,
+      showroomName: "",
       address: "",
       password: "",
       confirmPassword: "",
       agreeTerms: false,
       userType: "customer"
     });
+
+  }
   };
 
   return (
@@ -119,7 +129,7 @@ const Signup = () => {
         </div>
       </nav>
 
-      <div className="flex justify-center items-center min-h-screen py-4 px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-center items-center py-4 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-lg bg-white border border-gray-300 rounded-md shadow-lg">
           <form onSubmit={handleSubmit} className="p-6 space-y-6">
             <h1 className="flex justify-center font-semibold text-xl ">
@@ -128,7 +138,7 @@ const Signup = () => {
 
             <div className="flex justify-center">
               {signupRadio.map(radio =>
-                <div className=" flex  justify-center ">
+                <div key={uuidv4()} className=" flex  justify-center ">
                   <label className="flex items-center mr-6">
                     <input
                       type={radio.type}
@@ -148,7 +158,7 @@ const Signup = () => {
             </div>
             <div className="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
               {signupform.map(form =>
-                <div className="">
+                <div key={uuidv4()} className="">
                   {form.type === "text" &&
                     <div className="flex items-center border pl-2 rounded-md">
                       {form.svg}

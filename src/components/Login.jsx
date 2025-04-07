@@ -36,7 +36,7 @@ const Login = () => {
     setFormData({
       ...formData,
       [id]: type === "checkbox" ? checked : value,
-      [name]: type === "radio" ? value : undefined 
+      [name]: type === "radio" ? value : undefined
     });
   };
 
@@ -47,7 +47,7 @@ const Login = () => {
   };
 
   return (
-    <div className={`  `} >
+    <div className={`  `}>
       <nav className="px-4 py-4 shadow-md flex justify-between gap-2 items-center sm:text-sm">
         <Link to="/" className="hover:text-xl">
           <FaArrowLeftLong />
@@ -65,7 +65,7 @@ const Login = () => {
         </div>
       </nav>
 
-      <div className="flex justify-center items-center min-h-screen p-4 sm:px-6 lg:px-8">
+      <div className="flex justify-center items-center mt-7  p-4 self-center sm:px-6 lg:px-8">
         <div className="w-full max-w-lg bg-white border border-gray-300 rounded-lg shadow-lg  ">
           <form onSubmit={handleSubmit} className="p-6 space-y-6">
             <div>
@@ -73,49 +73,25 @@ const Login = () => {
                 Log in to your account
               </h1>
               <div className="flex justify-center">
-              {signupRadio.map(radio =>
-                <div className=" flex  justify-center ">
-                  <label className="flex items-center mr-6">
-                    <input
-                      type={radio.type}
-                      name={radio.name}
-                      value={radio.value}
-                      className="hidden peer"
-                      checked={radio.checked}
-                      onChange={handleChange}
-                    />
-                    <div className="w-3 h-3 rounded-full border-2 border-[#6b451a] peer-checked:outline-[#6b451a] peer-checked:border-[#6b451a] peer-checked:bg-[#6b451a] transition" />
-                    <span className="ml-2 ">
-                      {radio.labelName}
-                    </span>
-                  </label>
-                </div>
-              )}
-            </div>
-              {/* <div className="flex justify-center mt-4">
-              <label className="flex items-center mr-6">
-                  <input
-                    type="radio"
-                    name="userType"
-                    value="customer"
-                    className="hidden peer"
-                    checked={formData.userType === 'customer'}
-                    onChange={handleChange}
-                  />
-                  <span className="ml-2">Customer</span>
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="userType"
-                    value="owner"
-                    className="hidden peer"
-                    checked={formData.userType === "owner"}
-                    onChange={handleChange}
-                  />
-                  <span className="ml-2">Owner</span>
-                </label>
-              </div> */}
+                {signupRadio.map(radio =>
+                  <div className=" flex  justify-center ">
+                    <label className="flex items-center mr-6">
+                      <input
+                        type={radio.type}
+                        name={radio.name}
+                        value={radio.value}
+                        className="hidden peer"
+                        checked={radio.checked}
+                        onChange={handleChange}
+                      />
+                      <div className="w-3 h-3 rounded-full border-2 border-[#6b451a] peer-checked:outline-[#6b451a] peer-checked:border-[#6b451a] peer-checked:bg-[#6b451a] transition" />
+                      <span className="ml-2 ">
+                        {radio.labelName}
+                      </span>
+                    </label>
+                  </div>
+                )}
+              </div>
             </div>
             <div className="flex flex-col gap-6 ">
               <div className="">
@@ -125,14 +101,14 @@ const Login = () => {
                     type="email"
                     id="email"
                     className="bg-gray-50 text-gray-900 text-sm rounded-r-lg outline-0 block w-full p-2.5 "
-                    placeholder="aliamir123@gmail.com"
+                    placeholder="Email"
                     value={formData.email}
                     onChange={handleChange}
                     required
                   />
                 </div>
               </div>
-              <div >
+              <div>
                 <div className="relative flex items-center px-2 border bg-gray-50 border-gray-300 rounded-lg">
                   <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                     <button
@@ -149,7 +125,7 @@ const Login = () => {
                     type={showPassword ? "text" : "password"}
                     id="password"
                     className="bg-gray-50  text-gray-900 text-sm rounded-r-lg outline-0  block w-full p-2.5"
-                    placeholder="•••••••••"
+                    placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
                     required
