@@ -61,10 +61,10 @@ const Carousel = ({
 
   return (
     <div className={classNameOuterDiv}>
-      <Slider className={classNameSlider} {...settings}>
+      <Slider className={classNameSlider + " bg-white "} {...settings}>
         {carouselItems.map(item =>
           <div key={uuidv4()} className={classNameTopMostDiv}>
-            <div className={classNameTopDiv}>
+            <div className={classNameTopDiv + " bg-white"}>
               {item.logo &&
                 <img
                   className={classNameLogos}
@@ -76,7 +76,8 @@ const Carousel = ({
                   src={item.image}
                   alt={item.title}
                   className={classNameImages}
-                />}
+                  />}
+                  <div className="absolute w-[96%] rounded-md inset-0 bg-gradient-to-b from-black/70 to-black/5"></div>
               {item.title &&
                 <div className="p-4">
                   <h3 className="text-lg font-semibold ">

@@ -31,7 +31,7 @@ function App() {
   ]);
 
   return (
-    <div className="font-mono">
+    <div className="font-sans">
       <RouterProvider router={router} />
     </div>
   );

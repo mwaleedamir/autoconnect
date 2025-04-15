@@ -4,9 +4,9 @@ import { carouselItems } from "../consts/CarsLogos";
 
 const CarsLogoCards = () => {
   return (
-    <div className="bg-white">
-      <div className="w-[80%] justify-self-center font-"> 
-        <div className="flex flex-col justify-center items-center pt-6">
+    <div className="bg-white pb-6">
+      <div className="w-[80%] text-[#6b451a]  justify-self-center font- "> 
+        <div className="flex flex-col gap-3 justify-center items-center py-10">
           <h1 className="text-2xl font-bold">Car brands</h1>
           <p className="text-xl ">Buy your favourite one</p>
         </div>
@@ -17,7 +17,7 @@ const CarsLogoCards = () => {
             slidesToShow={5}
             infinite={true}
             autoplay={true}
-            autoplaySpeed={3000}
+            autoplaySpeed={5000}
             speed={5000}
             slidesToScroll={1}
             slidesToShow1024={3}
@@ -25,11 +25,12 @@ const CarsLogoCards = () => {
             slidesToScroll1024={1}
             slidesToScroll600={1}
             arrows={false}
+            classNameSlider="bg-white"
             classNameOuterDiv=""
-            classNameTopMostDiv=""
-            classNameImages="w-full h-48 object-cover p-2 "
-            classNameLogos="w-10 h-10 bg-gray-100 rounded-sm shadow-white shadow-md z-10 absolute top-6 left-[40%] max-sm:left-[43%]"
-            classNameTopDiv="relative  rounded-lg overflow-hidden shadow-md"
+            classNameTopMostDiv="relative w-full h-64 bg-white"
+            classNameImages="w-[96%] rounded-md h-64 object-cover flex gap-3 bg-white"
+            classNameLogos="w-13 h-13 rounded-full bg-white  shadow-md z-10 absolute top-6 left-[36%] max-sm:left-[38%]"
+            classNameTopDiv="relative bg-white overflow-hidden shadow-md"
           />
         </div>
       </div>

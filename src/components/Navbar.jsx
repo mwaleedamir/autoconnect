@@ -3,6 +3,7 @@ import Button from "../utils/Button";
 import NavbarCardsButton from "./NavbarCardsButton";
 import TopNavbar from "./TopNavbar";
 import NavbarCar from "./NavbarCar";
+import gif from '/images/car-gif.gif'
 
 const Navbar = () => {
   // bg-[url(/images/bg2.jpg)] bg-cover bg-center bg-no-repeat
@@ -37,6 +38,9 @@ const Navbar = () => {
           <NavbarCardsButton />
         </div>
       </div>
+      {/* <div className="w-full flex justify-center justify-self-center">
+        <img className="" src={gif} alt="gif" />
+      </div> */}
       {/* <div className="flex  justify-center gap-2 justify-self-center items-center">
         <NavbarCar />
         <NavbarCar />
