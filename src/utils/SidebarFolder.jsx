@@ -20,10 +20,10 @@ const SidebarFolder = ({ name }) => {
   };
 
   return (
-    <div className="w-full" >
-      <button className="w-full px-3 " onClick={() => setOpen(!open)}>
+    <div className="w-full " >
+      <button className="w-full px-3  " onClick={() => setOpen(!open)}>
         {name &&
-          <div className="flex justify-between p-2 rounded-md shadow-md items-center w-full ">
+          <div className="flex bg-white text-[#6b451a] justify-between p-2 rounded-md shadow-md items-center w-full ">
             <h1>
               {name}
             </h1>
@@ -35,40 +35,23 @@ const SidebarFolder = ({ name }) => {
 
       {open &&
         name === "Showrooms" &&
-        <div className="flex flex-col items-center justify-center py-2 w-full text-xs">
-          {filteredShowrooms.length === 0
-            ? ShowroomsName.map(showroom =>
-                <Link
-                  key={showroom._id}
-                  to={`/user/marketplace/${showroom._id}`}
-                  className={`p-3 w-full flex justify-between items-center rounded-md shadow-md ${activeShowroom ===
-                  showroom._id
-                    ? "bg-[#1E3A8A] text-white"
-                    : "text-black "} hover:bg-opacity-90 transition-colors`}
-                  onClick={() => handleShowroomClick(showroom._id)}
-                >
-                  <span>
-                    {showroom.showroomName}
-                  </span>
-                </Link>
-              )
-            : filteredShowrooms.map(showroom =>
-                <Link
-                  key={showroom._id}
-                  to={`/user/marketplace/${showroom._id}`}
-                  className={`p-3 w-full flex justify-between items-center rounded-md shadow-md ${activeShowroom ===
-                  showroom._id
-                    ? "bg-[#1E3A8A] text-white"
-                    : "text-black "} hover:bg-opacity-90 transition-colors`}
-                  onClick={() => handleShowroomClick(showroom._id)}
-                >
-                  <span>
-                    {showroom.showroomName}
-                  </span>
-                </Link>
-              )
-              }
-        </div>}
+        <div className="flex flex-col text-white items-stretch justify-start px-2 my-2 w-[90%] max-h-64 overflow-y-auto justify-self-center text-xs space-y-2">
+        {(filteredShowrooms.length === 0 ? ShowroomsName : filteredShowrooms).map(showroom => (
+          <Link
+            key={showroom._id}
+            to={`/user/marketplace/${showroom._id}`}
+            className={`p-3 w-full flex justify-between items-center rounded-md shadow-md transition-colors ${
+              activeShowroom === showroom._id
+                ? "bg-[#6b451a] text-white"
+                : "bg-white text-[#6b451a] hover:bg-opacity-90"
+            }`}
+            onClick={() => handleShowroomClick(showroom._id)}
+          >
+            <span className="truncate">{showroom.showroomName}</span>
+          </Link>
+        ))}
+      </div>
+      }
 
     </div>
   );

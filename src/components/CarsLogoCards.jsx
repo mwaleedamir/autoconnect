@@ -7,12 +7,12 @@ const CarsLogoCards = () => {
     <div className="bg-white pb-6">
       <div className="w-[80%] text-[#6b451a]  justify-self-center font- "> 
         <div className="flex flex-col gap-3 justify-center items-center py-10">
-          <h1 className="text-2xl font-bold">Car brands</h1>
+          <h1 className="text-3xl font-bold">Car brands</h1>
           <p className="text-xl ">Buy your favourite one</p>
         </div>
         <div className="pb-8">
           <Carousel
-            dots={true}
+            dots={false}
             carouselItems={carouselItems}
             slidesToShow={5}
             infinite={true}

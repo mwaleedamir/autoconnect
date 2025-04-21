@@ -2,6 +2,9 @@ import React from "react";
 // import { IoMdSearch } from "react-icons/io";
 import Navbar from "./Navbar";
 import CarsLogoCards from "./CarsLogoCards";
+import { VscWorkspaceTrusted } from "react-icons/vsc";
+import { FiLock } from "react-icons/fi";
+import { FaCarSide } from "react-icons/fa6";
 
 
 const LandingPageLayoutBody = () => {
@@ -21,17 +24,17 @@ const LandingPageLayoutBody = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
-              icon: "🚗",
+              icon: <FaCarSide/>,
               title: "Wide Selection",
               desc: "Access a wide range of vehicles from trusted showrooms."
             },
             {
-              icon: "🔒",
+              icon: <FiLock/>,
               title: "Secure Transactions",
               desc: "Enjoy secure and hassle-free transactions."
             },
             {
-              icon: "🤝",
+              icon: <VscWorkspaceTrusted/>,
               title: "Trusted Dealers",
               desc: "Connect with verified dealers and showrooms."
             }
@@ -40,10 +43,10 @@ const LandingPageLayoutBody = () => {
               key={index}
               className="p-6 rounded-lg shadow-lg bg-gray-100 "
             >
-              <span className="text-yellow-400 text-4xl mb-4">
+              <span className="flex justify-center text-4xl mb-4">
                 {item.icon}
               </span>
-              <h3 className=" font-bold text-xl mb-2">
+              <h3 className=" flex justify-center font-bold text-xl mb-2">
                 {item.title}
               </h3>
               <p className=" ">

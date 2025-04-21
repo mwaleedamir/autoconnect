@@ -8,5 +8,7 @@ export const ShowroomsName = [
   { _id: 7, showroomName: "Sindh Luxury Motors" },
   { _id: 8, showroomName: "Peshawar Auto Zone" },
   { _id: 9, showroomName: "Faisalabad Prime Motors" },
-  { _id: 10, showroomName: "Multan Speed Star" }
+  { _id: 10, showroomName: "Multan Speed Star" },
+  { _id: 11, showroomName: "lahore Speed Star" },
+  { _id: 12, showroomName: "karachi Speed Star" }
 ];

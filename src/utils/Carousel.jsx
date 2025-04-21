@@ -77,7 +77,7 @@ const Carousel = ({
                   alt={item.title}
                   className={classNameImages}
                   />}
-                  <div className="absolute w-[96%] rounded-md inset-0 bg-gradient-to-b from-black/70 to-black/5"></div>
+                  <div className="absolute w-[96%] rounded-md inset-0 bg-gradient-to-b from-black/80 to-black/10"></div>
               {item.title &&
                 <div className="p-4">
                   <h3 className="text-lg font-semibold ">

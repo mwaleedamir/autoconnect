@@ -18,7 +18,7 @@ const TopNavbar = ({ className }) => {
 
   return (
     <div className={` ${className}`}>
-      <div className="flex h-16 w-[80%] max-sm:w-[100%] justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
+      <div className="flex h-16 w-[90%] max-sm:w-[100%] justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
         <div className="text-center">
           <Link to="/">
             <p className="">AutoCorner</p>
