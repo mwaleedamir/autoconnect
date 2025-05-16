@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { BsFillGridFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa6";
-import { CarsListings } from "../consts/CarsLists";
+import { CarsListings } from "../consts/carsLists";
 import Button from "../utils/Button";
 import SaveButton from "./SaveButton";
 
@@ -39,8 +39,8 @@ const ShowroomsBody = () => {
           ? CarsListings.map(car =>
               <div
                 key={car._id}
-                className={`border border-gray-200 hover:border-2 shadow-xl hover:shadow-[#bc9a71] rounded-lg ${grid
-                  ? `bg-white bg-opacity-60 gap-2`
+                className={`border border-gray-200 bg-white hover:border-2 shadow-xl hover:shadow-[#bc9a71] rounded-lg ${grid
+                  ? ` bg-opacity-60 gap-2`
                   : `flex overflow-hidden h-48 items-center px-2 gap-3`}`}
               >
                 <div className={`  ${grid
@@ -63,9 +63,9 @@ const ShowroomsBody = () => {
                       </p>}
                 </div>
                 <div
-                  className={`flex items-center justify-center ${grid
+                  className={`flex items-center justify-center bg-white ${grid
                     ? `flex  `
-                    : `flex-2 h-full bg-white`}`}
+                    : `flex-2 h-full`}`}
                 >
                   <div
                     className={`bg-white flex-col justify-self-center ${grid
@@ -86,7 +86,7 @@ const ShowroomsBody = () => {
                     </div>
 
                       <div
-                        className={`grid  gap-1 font-semibold text-xs text-gray-600   ${grid
+                        className={`grid  gap-1 font-semibold text-xs text-gray-600 bg-white  ${grid
                           ? ` place-items-left grid-cols-2 `
                           : `grid-cols-4 justify-items-center h-full `}`}
                       >
@@ -114,7 +114,7 @@ const ShowroomsBody = () => {
 
                   </div>
                   <div
-                    className={`flex  ${grid
+                    className={`flex bg-white ${grid
                       ? `justify-center p-3  items-center`
                       : `flex-col items-center justify-center flex-1 h-[60%]`}`}
                   >

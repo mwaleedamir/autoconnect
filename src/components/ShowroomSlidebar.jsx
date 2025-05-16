@@ -22,13 +22,14 @@ const ShowroomSidebar = () => {
           />
         </div>
         <SidebarFolder name="Showrooms" />
+        <SidebarFolder name="Location" />
+        <SidebarFolder name="Catagories" />
         <SidebarFolder name="Price" />
+        <SidebarFolder name="Colors" />
         <SidebarFolder name="Make" />
         <SidebarFolder name="Model" />
-        <SidebarFolder name="Catagories" />
         <SidebarFolder name="Milage" />
         <SidebarFolder name="Engine Capacity" />
-        <SidebarFolder name="Location" />
       </div>
     </aside>
   );

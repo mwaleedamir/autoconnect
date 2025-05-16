@@ -13,18 +13,45 @@ const TopNavbar = ({ className }) => {
     { svg: <FaCarSide />, label: "Sell", to: "/sell-for-me" },
     { svg: <AiOutlineShop />, label: "Shop", to: "/shop" },
     { svg: <MdOutlinePersonOutline />, label: "Login", to: "/login" }
-   
   ];
 
   return (
     <div className={` ${className}`}>
-      <div className="flex h-16 w-[90%] max-sm:w-[100%] justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
+      <div className="flex h-16 w-[80%] max-sm:w-[100%] overflow-none justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
         <div className="text-center">
           <Link to="/">
             <p className="">AutoCorner</p>
             <p className="text-white text-[12px]">Let's Connect together</p>
           </Link>
         </div>
+        {/* <div className="flex w-full min-xl:w-[80%]  max-sm:flex-col max-sm:w-[90%]">
+          <div className="flex flex-wrap w-[100%] h-8 px-3 max-sm:container">
+            <input
+              className="flex-1  max-sm:w-full bg-white border-r  outline-0 text-black rounded-l-sm px-3 py-3 "
+              placeholder="car Make, Model,"
+              type="text"
+            />
+            <input
+              className="flex-1  bg-white outline-0 text-black  border-r   px-3  "
+              placeholder="Location"
+              type=""
+            />
+            <input
+              className="flex-1  bg-white outline-0 text-black  border-r   px-3  "
+              placeholder="Showroom"
+              type=""
+            />
+            <input
+              className="flex-1  bg-white outline-0 text-black  px-3  "
+              placeholder="Cars price"
+              type="number"
+            />
+            <Button
+              className="flex-1 p-3 flex justify-center overflow-none xs:px-4 max-sm:px-7 items-center  rounded-r-sm text-white "
+              name="Find"
+            />
+          </div>
+        </div> */}
         <div className="hidden min-md:flex gap-3 items-center">
           {Links.map(link =>
             <Link
@@ -35,7 +62,6 @@ const TopNavbar = ({ className }) => {
               {link.svg} {link.label}{" "}
             </Link>
           )}
-         
         </div>
         <div className="sm:flex min-md:hidden">
           <button
@@ -54,8 +80,8 @@ const TopNavbar = ({ className }) => {
                   <div className="flex justify-end mb-4">
                     <Button
                       onClick={() => setToggle(false)}
-                      className="bg-[#4A3418] hover:bg-[#382713] text-gray-600 hover:text-gray-900"
-                      name={<RxCross1 className="text-2xl" />}
+                      // className=""
+                      name={<RxCross1 className="text-2xl text-[#4A3418] hover:text-[#382713]" />}
                     />
                   </div>
 

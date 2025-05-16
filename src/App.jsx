@@ -6,6 +6,7 @@ import ShopLayout from "./pages/ShopLayout";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import PublicLayout from "./layout/PublicLayout";
+import OwnerPortalLayout from "./public Layouts/OwnerPortalLayout";
 
 
 function App() {
@@ -21,7 +22,13 @@ function App() {
     { path: "/shop", element: <ShopLayout /> },
     { path: "/sell-for-me", element: <SellForMe /> },
     { path: "/", element: <LandingPageLayout /> },
-
+    {
+      path: "/owner",
+      element: <OwnerPortalLayout/>,
+      children:[
+        
+      ]
+    },
     {
       path: "/marketplace",
       element: <Showrooms />,

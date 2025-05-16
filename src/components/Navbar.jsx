@@ -16,13 +16,13 @@ const Navbar = () => {
           <h1 className="text-white text-3xl lg:text-4xl max-sm:text-xl ">
             Find Your Dream Car
           </h1>
-          <div className="flex w-full min-xl:w-[80%]  gap-2 max-sm:flex-col max-sm:w-[90%]">
+          {/* <div className="flex w-full min-xl:w-[80%]  gap-2 max-sm:flex-col max-sm:w-[90%]">
             <input
               className="flex-1 w-[40%] max-sm:w-full bg-white outline-0 text-black rounded-sm px-3 py-3 "
               placeholder="Search Make, Model"
               type="text"
             />
-            {/* min-lg:w-58 */}
+            {/* min-lg:w-58 *
             <div className="flex gap-2 w-[60%] max-sm:container">
               <input
                 className="flex-2  bg-white outline-0 text-black rounded-sm px-3 py-3 "
@@ -34,8 +34,41 @@ const Navbar = () => {
                 name="Search"
               />
             </div>
-          </div>
-          <NavbarCardsButton />
+          </div> */}
+          <div className="flex w-full min-xl:w-[80%]  max-sm:flex-col max-sm:w-[90%]">
+                    <div className="flex flex-wrap w-[100%] h-8 px-3 max-sm:container">
+                      <input
+                        className="flex-1 max-sm:w-full bg-white border-r h-10  outline-0 text-black rounded-l-lg px-3 py-3 "
+                        placeholder="Car Make, Model, Milage"
+                        type="text"
+                      />
+                      <input
+                        className="flex-1  bg-white outline-0 text-black h-10  border-r   px-3  "
+                        placeholder="Location"
+                        type=""
+                      />
+                      <input
+                        className="flex-1  bg-white outline-0 text-black h-10  border-r   px-3  "
+                        placeholder="Showroom name"
+                        type=""
+                      />
+                      {/* <input
+                        className="flex-1  bg-white outline-0 text-black h-10  border-r   px-3  "
+                        placeholder="Showroom name"
+                        type=""
+                      /> */}
+                      <input
+                        className="flex-1  bg-white outline-0 text-black h-10  px-3  "
+                        placeholder="Car price"
+                        type="number"
+                      />
+                      <Button
+                        className="flex-1 p-3 flex justify-center overflow-none h-10 xs:px-4 max-sm:px-7 items-center  rounded-r-lg text-white "
+                        name="Find"
+                      />
+                    </div>
+                  </div>
+          {/* <NavbarCardsButton /> */}
         </div>
       </div>
       {/* <div className="w-full flex justify-center justify-self-center">
