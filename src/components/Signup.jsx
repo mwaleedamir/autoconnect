@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
 import { RiEyeCloseLine } from "react-icons/ri";
-import { MdOutlineMail, MdOutlinePhone } from "react-icons/md";
+import { MdOutlineLocationCity, MdOutlineMail, MdOutlinePhone } from "react-icons/md";
 import { FiLock } from "react-icons/fi";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoPersonOutline } from "react-icons/io5";
@@ -23,7 +23,8 @@ const Signup = () => {
     phone: "",
     email: "",
     showroomName: "",
-    showrooAddress: "",
+    showroomAddress: "",
+    cityName: "",
     password: "",
     confirmPassword: "",
     agreeTerms: false,
@@ -70,6 +71,20 @@ const Signup = () => {
     }
   };
 
+  const setToNull = () => setFormData({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    showroomName: "",
+    showroomAddress: "",
+    cityName: "",
+    password: "",
+    confirmPassword: "",
+    agreeTerms: false,
+    userType: "customer"
+  });
+
 
   const validateForm = () => {
     // Check if passwords match
@@ -109,26 +124,13 @@ const Signup = () => {
     // setIsLoading(true);
 
     try {
-      console.log("Form data being submitted:", formData);
       if (formData.userType === "customer") {
 
         const resultAction = await dispatch(createUser(formData));
-        console.log("resultAction", resultAction)
+        
         // Check if the action was fulfilled
         if (createUser.fulfilled.match(resultAction)) {
-          setFormData({
-            firstName: "",
-            lastName: "",
-            company: "",
-            phone: "",
-            email: "",
-            showroomName: "",
-            address: "",
-            password: "",
-            confirmPassword: "",
-            agreeTerms: false,
-            userType: "customer"
-          });
+          setToNull()
           toast.success('Registration successful!');
           Navigate("/login")
         } else {
@@ -137,22 +139,9 @@ const Signup = () => {
         }
       } else {
         const resultAction = await dispatch(createOwner(formData));
-
         // Check if the action was fulfilled
         if (createOwner.fulfilled.match(resultAction)) {
-          setFormData({
-            firstName: "",
-            lastName: "",
-            company: "",
-            phone: "",
-            email: "",
-            showroomName: "",
-            address: "",
-            password: "",
-            confirmPassword: "",
-            agreeTerms: false,
-            userType: "customer"
-          });
+          setToNull()
           toast.success('Registration successful!');
           Navigate("/login")
         }
@@ -254,6 +243,7 @@ const Signup = () => {
                 />
               </div>
 
+
               <div className="flex items-center border pl-2 rounded-md">
                 <MdOutlineMail />
                 <input
@@ -283,13 +273,26 @@ const Signup = () => {
                   </div>
 
                   <div className="flex items-center border pl-2 rounded-md">
+                    <MdOutlineLocationCity />
+                    <input
+                      type="text"
+                      id="cityName"
+                      className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
+                      placeholder="City name"
+                      value={formData.cityName}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="flex items-center border pl-2 rounded-md">
                     <CiLocationOn />
                     <input
                       type="text"
-                      id="address"
+                      id="showroomAddress"
                       className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
                       placeholder="Showroom Address"
-                      value={formData.address}
+                      value={formData.showroomAddress}
                       onChange={handleChange}
                       required
                     />

@@ -4,14 +4,8 @@ import { post } from "../services/apiEndpoint"
 export const createUser = createAsyncThunk ('userDetails/createUser', async (data, {rejectWithValue}) =>{
     try {
       const response = await post('/auth/user', data);
-      console.log("Response:", response);
-      console.log("Status:", response.status);
-
       const result = response.data
-      console.log("result", result);
-      
       return result;
-
     } catch (error) {
       console.error("Fetch failed:", error);
       return rejectWithValue("Network or unexpected error occurred");
@@ -19,17 +13,6 @@ export const createUser = createAsyncThunk ('userDetails/createUser', async (dat
 }
 );
 
-// export const createUser = createAsyncThunk(
-//   'createUser',
-//   async (formData, thunkAPI) => {
-//     try {
-//       const response = await axios.post('http://localhost:8000/auth/user', formData);
-//       return response.data; // 👈 return this if you want access in `.payload`
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response.data); // 👈 will go to `.payload` on reject
-//     }
-//   }
-// );
 
 const userDetailsSignup = createSlice({
     name: 'userDetails',
@@ -57,9 +40,11 @@ const userDetailsSignup = createSlice({
 
 
 export const createOwner = createAsyncThunk ('ownerDetails/createOwner', async (data, {rejectWithValue}) =>{
+    console.log("data ", data)
     const response = await post('/auth/owner',data)
+    console.log("response ", response)
     try {
-        const result = await response.json()
+        const result = response.data
         return result
     } catch (error) {
         return rejectWithValue("error response from ownerSignupSlice in creating user",error) 

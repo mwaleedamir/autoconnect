@@ -5,7 +5,13 @@ import SellForMe from "./pages/SellForMe";
 import ShopLayout from "./pages/ShopLayout";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
-import OwnerPortalLayout from "./pages/OwnerPortalLayout";
+import OwnerPortalDashboardLayout from "./pages/OwnerPortalDashboardLayout";
+import OwnerPortalProfile from "./pages/OwnerPortalProfile";
+import OwnerPortalCreateListings from "./pages/OwnerPortalCreateListings";
+import OwnerPortalSettings from "./pages/OwnerPortalSettings";
+import OwnerPortalShowListings from "./pages/OwnerPortalShowListings";
+import OwnerPortalDashboard from "./pages/OwnerPortalDashboard";
+
 
 
 function App() {
@@ -17,9 +23,14 @@ function App() {
     { path: "/", element: <LandingPageLayout /> },
     {
       path: "/owner",
-      element: <OwnerPortalLayout/>,
+      element: <OwnerPortalDashboardLayout/>,
       children:[
-        
+     { path:"dashboard", element:<OwnerPortalDashboard/>},
+     { path:"profile", element:<OwnerPortalProfile/>},
+     { path:"portal-create-listings", element:<OwnerPortalCreateListings/>},
+     { path:"portal-Show-listings", element:<OwnerPortalShowListings/>},
+     { path:"portal-settings", element:<OwnerPortalSettings/>},
+     { path:"portal-Show-listings", element:<OwnerPortalProfile/>},
       ]
     },
     {

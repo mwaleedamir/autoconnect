@@ -8,6 +8,7 @@ import { RiEyeCloseLine } from "react-icons/ri";
 import { ownerLogin, userLogin } from "../features/userLoginSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast"
+import { v4 as uuidv4 } from "uuid"
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -86,7 +87,7 @@ const Login = () => {
         if (ownerLogin.fulfilled.match(resultAction)) {
           setToNull( )
           toast.success('Registration successful!');
-          Navigate("/")
+          Navigate("/owner/dashboard")
         } else {
           const errorMessage = resultAction.payload || "Registration failed!";
           toast.error(errorMessage);
@@ -126,7 +127,7 @@ const Login = () => {
               </h1>
               <div className="flex justify-center">
                 {signupRadio.map(radio =>
-                  <div className=" flex  justify-center ">
+                  <div key={uuidv4()} className=" flex  justify-center ">
                     <label className="flex items-center mr-6">
                       <input
                         type={radio.type}
