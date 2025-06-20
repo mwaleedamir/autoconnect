@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye } from "react-icons/ai";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { MdOutlineMail, MdOutlinePhone } from "react-icons/md";
@@ -9,8 +9,10 @@ import { IoPersonOutline } from "react-icons/io5";
 import { BsShop } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 import { useDispatch } from "react-redux";
-import { createUser } from "../features/userSignupSlice";
+import { createUser, createOwner } from "../features/userSignupSlice";
 import { v4 as uuidv4 } from "uuid"
+import { toast } from "react-hot-toast"
+
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,11 +20,10 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    company: "",
     phone: "",
     email: "",
     showroomName: "",
-    address: "",
+    showrooAddress: "",
     password: "",
     confirmPassword: "",
     agreeTerms: false,
@@ -30,6 +31,7 @@ const Signup = () => {
   });
 
   const dispatch = useDispatch();
+  const Navigate = useNavigate()
 
   const signupRadio = [
     {
@@ -47,67 +49,121 @@ const Signup = () => {
       checked: formData.userType === "owner"
     }
   ];
-
-  const signupform = [
-    {
-      svg: <IoPersonOutline />,
-      type: "text",
-      id: "firstName",
-      placeholder: "First Name",
-      value: formData.firstName
-    },
-    {
-      svg: <IoPersonOutline />,
-      type: "text",
-      id: "lastName",
-      placeholder: "Last Name",
-      value: formData.lastName
-    },
-    {
-      svg: <MdOutlinePhone />,
-      type: "tel",
-      id: "phone",
-      placeholder: "Phone No",
-      value: formData.phone
-    },
-    {
-      svg: <MdOutlineMail />,
-      type: "email",
-      id: "email",
-      placeholder: "Email",
-      value: formData.email
-    }
-  ];
-
   const handleChange = e => {
     const { id, value, type, checked, name } = e.target;
-    setFormData({
-      ...formData,
-      [id]: type === "checkbox" ? checked : value,
-      [name]: type === "radio" ? value : undefined 
-    });
+
+    if (type === "radio") {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    } else if (type === "checkbox") {
+      setFormData({
+        ...formData,
+        [id]: checked
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [id]: value
+      });
+    }
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(formData);
-    const result = dispatch(createUser(formData))
-    if(result){
-      setFormData({
-        firstName: "",
-      lastName: "",
-      company: "",
-      phone: "",
-      email: "",
-      showroomName: "",
-      address: "",
-      password: "",
-      confirmPassword: "",
-      agreeTerms: false,
-      userType: "customer"
-    });
 
-  }
+  const validateForm = () => {
+    // Check if passwords match
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match!");
+      return false;
+    }
+
+    // Check password strength (optional)
+    if (formData.password.length < 6) {
+      toast.error("Password must be at least 6 characters long!");
+      return false;
+    }
+
+    // Check if owner fields are filled when userType is owner
+    if (formData.userType === "owner") {
+      if (!formData.showroomName.trim()) {
+        toast.error("Showroom name is required for owners!");
+        return false;
+      }
+      if (!formData.address.trim()) {
+        toast.error("Showroom address is required for owners!");
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    // setIsLoading(true);
+
+    try {
+      console.log("Form data being submitted:", formData);
+      if (formData.userType === "customer") {
+
+        const resultAction = await dispatch(createUser(formData));
+        console.log("resultAction", resultAction)
+        // Check if the action was fulfilled
+        if (createUser.fulfilled.match(resultAction)) {
+          setFormData({
+            firstName: "",
+            lastName: "",
+            company: "",
+            phone: "",
+            email: "",
+            showroomName: "",
+            address: "",
+            password: "",
+            confirmPassword: "",
+            agreeTerms: false,
+            userType: "customer"
+          });
+          toast.success('Registration successful!');
+          Navigate("/login")
+        } else {
+          const errorMessage = resultAction.payload || "Registration failed!";
+          toast.error(errorMessage);
+        }
+      } else {
+        const resultAction = await dispatch(createOwner(formData));
+
+        // Check if the action was fulfilled
+        if (createOwner.fulfilled.match(resultAction)) {
+          setFormData({
+            firstName: "",
+            lastName: "",
+            company: "",
+            phone: "",
+            email: "",
+            showroomName: "",
+            address: "",
+            password: "",
+            confirmPassword: "",
+            agreeTerms: false,
+            userType: "customer"
+          });
+          toast.success('Registration successful!');
+          Navigate("/login")
+        }
+      }
+    }
+    catch (error) {
+      console.error("Registration error:", error);
+      toast.error("Something went wrong. Please try again!");
+    } finally {
+      // setIsLoading(false);
+    }
   };
 
   return (
@@ -156,86 +212,97 @@ const Signup = () => {
                 </div>
               )}
             </div>
+
             <div className="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
-              {signupform.map(form =>
-                <div key={uuidv4()} className="">
-                  {form.type === "text" &&
-                    <div className="flex items-center border pl-2 rounded-md">
-                      {form.svg}
-                      <input
-                        type="text"
-                        id={form.id}
-                        className=" text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
-                        placeholder={form.placeholder}
-                        value={form.value}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>}
+              <div className="flex items-center border pl-2 rounded-md">
+                <IoPersonOutline />
+                <input
+                  type="text"
+                  id="firstName"
+                  className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
+                  placeholder="First Name"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                  {form.type === "tel" &&
-                    <div className="flex items-center border pl-2 rounded-md">
-                      {form.svg}
-                      <input
-                        type={form.type}
-                        id={form.id}
-                        className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
-                        placeholder={form.placeholder}
-                        pattern="[0][3][0-9]{2}-[0-9]{7}"
-                        value={form.value}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>}
+              <div className="flex items-center border pl-2 rounded-md">
+                <IoPersonOutline />
+                <input
+                  type="text"
+                  id="lastName"
+                  className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
+                  placeholder="Last Name"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-                  {form.type === "email" &&
-                    <div className="flex items-center border pl-2 rounded-md">
-                      {form.svg}
-                      <input
-                        type={form.type}
-                        id={form.id}
-                        className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5 "
-                        placeholder={form.placeholder}
-                        value={form.value}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>}
-                </div>
+              <div className="flex items-center border pl-2 rounded-md">
+                <MdOutlinePhone />
+                <input
+                  type="tel"
+                  id="phone"
+                  className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
+                  placeholder="Phone No"
+                  pattern="[0][3][0-9]{2}[0-9]{7}"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="flex items-center border pl-2 rounded-md">
+                <MdOutlineMail />
+                <input
+                  type="email"
+                  id="email"
+                  className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {formData.userType === "owner" && (
+                <>
+                  <div className="flex items-center border pl-2 rounded-md">
+                    <BsShop />
+                    <input
+                      type="text"
+                      id="showroomName"
+                      className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
+                      placeholder="Showroom Name"
+                      value={formData.showroomName}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="flex items-center border pl-2 rounded-md">
+                    <CiLocationOn />
+                    <input
+                      type="text"
+                      id="address"
+                      className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5"
+                      placeholder="Showroom Address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                </>
               )}
 
-              {formData.userType === "owner" &&
-                <div className="flex items-center border pl-2 rounded-md">
-                  <BsShop />
-                  <input
-                    type="text"
-                    id="showroomName"
-                    className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5 "
-                    placeholder="Showroom Name"
-                    value={formData.showroomName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>}
-
-              {formData.userType === "owner" &&
-                <div className="flex items-center border pl-2 rounded-md">
-                  <CiLocationOn />
-                  <input
-                    type="text"
-                    id="address"
-                    className="text-gray-900 text-sm rounded-r-lg outline-0 w-full p-2.5 "
-                    placeholder="Showroom address"
-                    value={formData.address}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>}
-
+              {/* Password */}
               <div className="relative flex items-center border pl-2 rounded-md">
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                   <button
-                    onMouseDown={() => setShowPassword(!showPassword)}
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
                     className="text-gray-900 focus:outline-none"
                   >
                     {showPassword ? <AiOutlineEye /> : <RiEyeCloseLine />}
@@ -245,7 +312,7 @@ const Signup = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  className="text-gray-900 text-sm rounded-r-lg outline-0 block w-full p-2.5 "
+                  className="text-gray-900 text-sm rounded-r-lg outline-0 block w-full p-2.5"
                   placeholder="Password"
                   value={formData.password}
                   onChange={handleChange}
@@ -253,22 +320,23 @@ const Signup = () => {
                 />
               </div>
 
+              {/* Confirm Password */}
               <div className="relative flex items-center border pl-2 rounded-md">
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3">
                   <button
+                    type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="text-gray-900 focus:outline-none"
                   >
-                    {showConfirmPassword
-                      ? <AiOutlineEye />
-                      : <RiEyeCloseLine />}
+                    {showConfirmPassword ? <AiOutlineEye /> : <RiEyeCloseLine />}
                   </button>
                 </div>
                 <FiLock />
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirmPassword"
-                  className="text-gray-900 text-sm rounded-r-lg outline-0 block w-full p-2.5 "
-                  placeholder="confirm Password"
+                  className="text-gray-900 text-sm rounded-r-lg outline-0 block w-full p-2.5"
+                  placeholder="Confirm Password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
@@ -289,7 +357,7 @@ const Signup = () => {
               </div>
               <label
                 htmlFor="agreeTerms"
-                className="ms-2 text-sm font-medium text-gray-900 "
+                className="ms-2 text-sm font-medium text-gray-900"
               >
                 I agree with the{" "}
                 <Link

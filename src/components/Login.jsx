@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { MdOutlineMail } from "react-icons/md";
 import { FiLock } from "react-icons/fi";
 import { AiOutlineEye } from "react-icons/ai";
 import { RiEyeCloseLine } from "react-icons/ri";
+import { ownerLogin, userLogin } from "../features/userLoginSlice";
+import { useDispatch } from "react-redux";
+import { toast } from "react-hot-toast"
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -40,10 +43,59 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = e => {
+  const dispatch = useDispatch();
+  const Navigate = useNavigate()
+
+  const setToNull = () => setFormData({
+    email: "",
+    password: "",
+    agreeTerms: false,
+    userType: "customer"
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+    if (formData.userType === "customer") {
+
+      try {
+        console.log("Form data being submitted:", formData);
+
+        const resultAction = await dispatch(userLogin(formData));
+
+        if (userLogin.fulfilled.match(resultAction)) {
+          setToNull
+          toast.success('Registration successful!');
+          Navigate("/")
+        } else {
+          const errorMessage = resultAction.payload || "Registration failed!";
+          toast.error(errorMessage);
+        }
+      } catch (error) {
+        console.error("Registration error:", error);
+        toast.error("Something went wrong. Please try again!");
+      }
+    }
+    else {
+      try {
+        console.log("Form data being submitted:", formData);
+
+        const resultAction = await dispatch(ownerLogin(formData));
+
+        console.log("resultAction in login", resultAction)
+
+        if (ownerLogin.fulfilled.match(resultAction)) {
+          setToNull( )
+          toast.success('Registration successful!');
+          Navigate("/")
+        } else {
+          const errorMessage = resultAction.payload || "Registration failed!";
+          toast.error(errorMessage);
+        }
+      } catch (error) {
+        console.error("Registration error:", error);
+        toast.error("Something went wrong. Please try again!");
+      }
+    }
   };
 
   return (
