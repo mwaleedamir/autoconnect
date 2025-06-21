@@ -10,7 +10,7 @@ const OwnerDashboardNavbar = () => {
   const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
 
   return (
-    <header className="w-full bg-white border-b border-gray-200  shadow-sm px-4 py-2 md:px-6 h-16">
+    <header className="w-full bg-white border-b border-gray-200  shadow-sm px-4 py-2 md:px-6 h-14">
       <div className="flex justify-between items-center">
         
 
@@ -24,23 +24,23 @@ const OwnerDashboardNavbar = () => {
           <NavLink
             to="/owner/dashboard"
             className={({ isActive }) =>
-              `text-lg font-medium ${isActive ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`
+              `text-sm font-medium ${isActive ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`
             }
           >
             Dashboard
           </NavLink>
           <NavLink
-            to="/dashboard/my-cars"
+            to="/owner/dashboard/mycars"
             className={({ isActive }) =>
-              `text-lg font-medium ${isActive ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`
+              `text-sm font-medium ${isActive ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`
             }
           >
             My Cars
           </NavLink>
           <NavLink
-            to="/dashboard/analytics"
+            to="/owner/dashboard/analytics"
             className={({ isActive }) =>
-              `text-lg font-medium ${isActive ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`
+              `text-sm font-medium ${isActive ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`
             }
           >
             Analytics
@@ -61,7 +61,7 @@ const OwnerDashboardNavbar = () => {
           {/* Dropdown */}
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 bg-white border rounded shadow-md p-2 z-50 w-40">
-              <NavLink to="/dashboard/profile" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
+              <NavLink to="/owner/profile" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
                 Profile
               </NavLink>
               <button className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 rounded">

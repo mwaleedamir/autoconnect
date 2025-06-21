@@ -8,12 +8,12 @@ const OwnerPortalSidebar = () => {
 
   return (
     <aside
-      className={`h-screen bg-white border-r border-gray-200 flex flex-col justify-between shadow transition-all duration-300 ${
-        isCollapsed ? "w-16" : "w-64"
+      className={`h-screen bg-white border-r border-gray-200 flex flex-col justify-between shadow transition-all duration-800 ${
+        isCollapsed ? "w-16" : "w-60"
       }`}
     >
       {/* Top Logo & Toggle */}
-      <div className="flex items-center justify-between px-4 h-16 border-b border-gray-200">
+      <div className="flex items-center justify-between px-4 h-14 border-b border-gray-200">
         {!isCollapsed && (
           <h1 className="text-xl font-bold text-black tracking-wide whitespace-nowrap">
             Auto<span className="text-amber-500">Connect</span>
@@ -21,7 +21,7 @@ const OwnerPortalSidebar = () => {
         )}
         <button
           onClick={() => setIsCollapsed((prev) => !prev)}
-          className="text-xl text-gray-700 m-auto"
+          className="text-xl text-gray-700 "
         >
           <FiMenu />
         </button>

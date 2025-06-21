@@ -90,7 +90,7 @@ const LandingPageLayoutBody = () => {
           Join thousands of users who trust AutoConnectPK.
         </p>
         <a
-          href="/auth/signup"
+          href="/signup"
           className="bg-yellow-400 text-[#6b451a] font-bold py-3 px-6 rounded-lg hover:bg-yellow-300 transition-all"
         >
           Sign Up Now
