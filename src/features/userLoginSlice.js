@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { post } from "../services/apiEndpoint"
 
-// USER AUTH SLICE
 export const userLogin = createAsyncThunk(
     'userLogin',
     async (data, { rejectWithValue }) => {
@@ -19,12 +18,13 @@ const userAuthSlice = createSlice({
     name: 'userAuth',
     initialState: {
         user: null,
-        isLoading: false,
-        error: null
+        isLoadingUser: false,
+        errorUser: null,
+        token:null
     },
     reducers: {
         clearUserError: (state) => {
-            state.error = null
+            state.errorUser = null
         },
         userLogout: (state) => {
             state.user = null
@@ -33,17 +33,18 @@ const userAuthSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(userLogin.pending, (state) => {
-                state.isLoading = true
-                state.error = null
+                state.isLoadingUser = true
+                state.errorUser = null
             })
             .addCase(userLogin.fulfilled, (state, action) => {
-                state.isLoading = false
+                state.isLoadingUser = false
                 state.user = action.payload
-                state.error = null
+                state.token = action.payload.token
+                state.errorUser = null
             })
             .addCase(userLogin.rejected, (state, action) => {
-                state.isLoading = false
-                state.error = action.payload || action.error.message
+                state.isLoadingUser = false
+                state.errorUser = action.payload || action.errorUser.message
             })
     }
 })
@@ -66,12 +67,13 @@ const ownerAuthSlice = createSlice({
     name: 'ownerAuth',
     initialState: {
         owner: null,
-        isLoading: false,
-        error: null
+        isLoadingOwner: false,
+        errorOwner: null,
+        token :null
     },
     reducers: {
         clearOwnerError: (state) => {
-            state.error = null
+            state.isLoadingOwner = null
         },
         ownerLogout: (state) => {
             state.owner = null
@@ -80,17 +82,18 @@ const ownerAuthSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(ownerLogin.pending, (state) => {
-                state.isLoading = true
-                state.error = null
+                state.isLoadingOwner = true
+                state.errorOwner = null
             })
             .addCase(ownerLogin.fulfilled, (state, action) => {
-                state.isLoading = false
+                state.isLoadingOwner = false
                 state.owner = action.payload
-                state.error = null
+                state.token = action.payload.token
+                state.errorOwner = null
             })
             .addCase(ownerLogin.rejected, (state, action) => {
-                state.isLoading = false
-                state.error = action.payload || action.error.message
+                state.isLoadingOwner = false
+                state.errorOwner = action.payload || action.errorOwner.message
             })
     }
 })

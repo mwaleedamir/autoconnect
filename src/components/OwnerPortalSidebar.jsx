@@ -2,9 +2,16 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import sidebarItems from "../consts/ownerSidebarItems";
 import { FiLogOut, FiMenu } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { ownerLogout } from "../features/userLoginSlice";
 
 const OwnerPortalSidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const {isloadingOwner, owner} = useSelector((state) => state.ownerAuth)
+
+  const Logout = () =>{
+    ownerLogout
+  }
 
   return (
     <aside
@@ -13,12 +20,12 @@ const OwnerPortalSidebar = () => {
       }`}
     >
       {/* Top Logo & Toggle */}
-      <div className="flex items-center justify-between px-4 h-14 border-b border-gray-200">
+      <div className="flex items-center justify-between px-4v h-14 border-b border-gray-200">
         {!isCollapsed && (
           <h1 className="text-xl font-bold text-black tracking-wide whitespace-nowrap">
             Auto<span className="text-amber-500">Connect</span>
           </h1>
-        )}
+        )} 
         <button
           onClick={() => setIsCollapsed((prev) => !prev)}
           className="text-xl text-gray-700 "

@@ -23,7 +23,9 @@ function App() {
     { path: "/", element: <LandingPageLayout /> },
     {
       path: "/owner",
-      element: <OwnerPortalDashboardLayout/>,
+      element : (
+        <OwnerPortalDashboardLayout/>
+      ),
       children:[
      { path:"dashboard", element:<OwnerPortalDashboard/>},
      { path:"profile", element:<OwnerPortalProfile/>},

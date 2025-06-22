@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import cartReducer from '../features/addToCartBtnSlice'
 import Saved from '../features/savebuttonSlice'
-import { userDetailsReducer } from "../features/userSignupSlice";
-import { ownerDetailsReducer } from "../features/userSignupSlice";
+import { ownerDetailsReducer, userDetailsReducer } from "../features/userSignupSlice";
+import { ownerAuthReducer, userAuthReducer } from '../features/userLoginSlice';
+
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,7 @@ export const store = configureStore({
     saved : Saved,
     userDetails : userDetailsReducer,
     ownerDetails : ownerDetailsReducer,
+    userAuth : userAuthReducer,
+    ownerAuth : ownerAuthReducer,
   },
 })  

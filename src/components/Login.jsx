@@ -6,9 +6,11 @@ import { FiLock } from "react-icons/fi";
 import { AiOutlineEye } from "react-icons/ai";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { ownerLogin, userLogin } from "../features/userLoginSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast"
 import { v4 as uuidv4 } from "uuid"
+
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -44,8 +46,11 @@ const Login = () => {
     });
   };
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const Navigate = useNavigate()
+
+  const {isloadingOwner, errorOwner, owner} = useSelector((state) => state.ownerAuth)
+  const {isloadingUser, errorUser, user} = useSelector((state) => state.userAuth)
 
   const setToNull = () => setFormData({
     email: "",
@@ -62,10 +67,10 @@ const Login = () => {
         console.log("Form data being submitted:", formData);
 
         const resultAction = await dispatch(userLogin(formData));
-
+        console.log("resultAction in form daat",resultAction.payload.message)
         if (userLogin.fulfilled.match(resultAction)) {
           setToNull
-          toast.success('Registration successful!');
+          toast.success(resultAction.payload.message);
           Navigate("/")
         } else {
           const errorMessage = resultAction.payload || "Registration failed!";
@@ -79,14 +84,13 @@ const Login = () => {
     else {
       try {
         console.log("Form data being submitted:", formData);
-
+        
         const resultAction = await dispatch(ownerLogin(formData));
-
-        console.log("resultAction in login", resultAction)
-
+        console.log("resultAction in form daat",resultAction.payload.message)
+        
         if (ownerLogin.fulfilled.match(resultAction)) {
           setToNull( )
-          toast.success('Registration successful!');
+          toast.success(resultAction.payload.message);
           Navigate("/owner/dashboard")
         } else {
           const errorMessage = resultAction.payload || "Registration failed!";
@@ -190,7 +194,7 @@ const Login = () => {
                 type="submit"
                 className="text-white bg-[#6b451a] hover:bg-[#aa702e] cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center "
               >
-                Login
+                {isloadingOwner || isloadingUser ? "Please Wait..." : "Login"}
               </button>
               <div className="flex flex-row cursor-pointer gap-2 justify-center">
                 <h1 className="">Don't have an account yet?</h1>
