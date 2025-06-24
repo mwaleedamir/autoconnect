@@ -64,10 +64,8 @@ const Login = () => {
     if (formData.userType === "customer") {
 
       try {
-        console.log("Form data being submitted:", formData);
 
         const resultAction = await dispatch(userLogin(formData));
-        console.log("resultAction in form daat",resultAction.payload.message)
         if (userLogin.fulfilled.match(resultAction)) {
           setToNull
           toast.success(resultAction.payload.message);
@@ -83,11 +81,7 @@ const Login = () => {
     }
     else {
       try {
-        console.log("Form data being submitted:", formData);
-        
         const resultAction = await dispatch(ownerLogin(formData));
-        console.log("resultAction in form daat",resultAction.payload.message)
-        
         if (ownerLogin.fulfilled.match(resultAction)) {
           setToNull( )
           toast.success(resultAction.payload.message);

@@ -2,25 +2,21 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import sidebarItems from "../consts/ownerSidebarItems";
 import { FiLogOut, FiMenu } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ownerLogout } from "../features/userLoginSlice";
 
 const OwnerPortalSidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const {isloadingOwner, owner} = useSelector((state) => state.ownerAuth)
-
-  const Logout = () =>{
-    ownerLogout
-  }
+  const dispatch  = useDispatch()
 
   return (
     <aside
-      className={`h-screen bg-white border-r border-gray-200 flex flex-col justify-between shadow transition-all duration-800 ${
+      className={`min-h-screen bg-white border-r border-gray-200 flex flex-col justify-between shadow transition-all duration-800 ${
         isCollapsed ? "w-16" : "w-60"
       }`}
     >
       {/* Top Logo & Toggle */}
-      <div className="flex items-center justify-between px-4v h-14 border-b border-gray-200">
+      <div className="flex items-center justify-between px-4 h-14 border-b border-gray-200">
         {!isCollapsed && (
           <h1 className="text-xl font-bold text-black tracking-wide whitespace-nowrap">
             Auto<span className="text-amber-500">Connect</span>
@@ -57,7 +53,7 @@ const OwnerPortalSidebar = () => {
       {/* Logout Button */}
       <div className="px-4 py-5 border-t border-gray-200">
         <button
-          onClick={() => console.log("Logout")}
+          onClick={()=>dispatch(ownerLogout())}
           className="w-full flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-black hover:bg-gray-800 rounded-md"
         >
           <FiLogOut className="text-lg" />

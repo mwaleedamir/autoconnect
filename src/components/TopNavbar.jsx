@@ -38,17 +38,17 @@ const TopNavbar = ({ className }) => {
             </Link>
           )}
 
-          {owner ? 
-           <Link to="/owner/dashboard">
-            <div className="flex gap-1 items-center">
-              <MdSpaceDashboard /> Portal
-            </div></Link>
-             : 
+          {owner ?
+            <Link to="/owner/dashboard">
+              <div className="flex gap-1 items-center">
+                <MdSpaceDashboard /> Portal
+              </div></Link>
+            :
             <Link to="/login">
-            <div className="flex gap-1 items-center">
-              <MdOutlinePersonOutline /> Login
-            </div></Link>
-            }  
+              <div className="flex gap-1 items-center">
+                <MdOutlinePersonOutline /> Login
+              </div></Link>
+          }
         </div>
 
         <div className="sm:flex min-md:hidden">
@@ -83,8 +83,19 @@ const TopNavbar = ({ className }) => {
                       >
                         {link.label}
                       </Link>
-                    )}
 
+                    )}
+                    {owner ?
+                      <Link to="/owner/dashboard">
+                        <div className="flex gap-1 text-gray-800 text-lg py-2 hover:bg-gray-100 transition-colors duration-300">
+                          <MdSpaceDashboard /> Portal
+                        </div></Link>
+                      :
+                      <Link to="/login">
+                        <div className="flex gap-1 text-gray-800 text-lg py-2 hover:bg-gray-100 transition-colors duration-300">
+                          <MdOutlinePersonOutline /> Login
+                        </div></Link>
+                    }
                   </nav>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "../utils/Carousel";
-import { carouselItems } from "../consts/CarsLogos";
+import { carouselItems } from "../consts/carsLogos";
 
 const CarsLogoCards = () => {
   return (

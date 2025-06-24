@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FiChevronDown, FiMenu } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
+import LogoutButton from "../utils/LogoutButton"
 
 const OwnerDashboardNavbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ const OwnerDashboardNavbar = () => {
               `text-sm font-medium ${isActive ? 'text-black border-b-2 border-black' : 'text-gray-600 hover:text-black'}`
             }
           >
-            My Cars
+            Reciept
           </NavLink>
           <NavLink
             to="/owner/dashboard/analytics"
@@ -64,9 +65,7 @@ const OwnerDashboardNavbar = () => {
               <NavLink to="/owner/profile" className="block px-4 py-2 text-sm hover:bg-gray-100 rounded">
                 Profile
               </NavLink>
-              <button className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 rounded">
-                Logout
-              </button>
+              <LogoutButton type="owner" className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 rounded"/>
             </div>
           )}
         </div>

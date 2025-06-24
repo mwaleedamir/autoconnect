@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
-import {ShowroomsName} from "../consts/showroomsName"
 import { Link } from "react-router-dom";
-import { CarsMake } from "../consts/carMake";
-import CarCategories from "../consts/carCatogories";
+import ShowroomsName from "../consts/showroomsName.json"
+import  CarsMake  from "../consts/carMake.json";
+import CarCategories from "../consts/carCatogories.json";
+import LocationShowrooms from "../consts/locationShowrooms.json";
+import CarColors from "../consts/carColors.json";
+import CarEngineCapacities from "../consts/carEngineCapacity.json";
 import {v4 as uuidv4} from "uuid"
-import {LocationShowrooms} from "../consts/locationShowrooms";
-import CarColors from "../consts/carColors";
-import CarEngineCapacities from "../consts/carEngineCapacity";
 
 const SidebarFolder = ({ name }) => {
   const [open, setOpen] = useState(false);
@@ -15,8 +15,6 @@ const SidebarFolder = ({ name }) => {
  const [year, setYear] = useState(1990); // Selected year
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: currentYear - 1990 + 1 }, (_, index) => 1990 + index);
-
-
 
   const filteredShowrooms = ShowroomsName.filter((showroom) =>
     showroom.showroomName.toLowerCase().includes()
@@ -28,7 +26,7 @@ const SidebarFolder = ({ name }) => {
 
   return (
     <div className="w-full " >
-      <button className="w-full px-3  " onClick={() => setOpen(!open)}>
+      <button className="w-full px-3" onClick={() => setOpen(!open)}>
         {name &&
           <div className="flex bg-white text-[#6b451a] justify-between p-2 rounded-md shadow-md items-center w-full ">
             <h1>

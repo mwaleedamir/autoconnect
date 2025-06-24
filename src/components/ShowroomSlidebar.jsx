@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SidebarFolder from "../utils/SidebarFolder";
 import { IoSearchOutline } from "react-icons/io5";
+import {v4 as uuidv4} from "uuid"
 
 const ShowroomSidebar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,15 +22,30 @@ const ShowroomSidebar = () => {
             onChange={e => setSearchTerm(e.target.value)}
           />
         </div>
-        <SidebarFolder name="Showrooms" />
-        <SidebarFolder name="Location" />
+        {[
+          {name : "Showrooms"},
+          {name : "Location"},
+          {name : "Catagories"},
+          {name : "Price"},
+          {name : "Colors"},
+          {name : "Make"},
+          {name : "Model"},
+          {name : "Milage"},  
+          {name : "Engine Capacity"},
+        ].map((list) =>
+          <div className="w-full" key={uuidv4()}>
+          <SidebarFolder name={list.name} />
+          </div>
+          
+        )}
+        {/* <SidebarFolder name="Location" />
         <SidebarFolder name="Catagories" />
         <SidebarFolder name="Price" />
         <SidebarFolder name="Colors" />
         <SidebarFolder name="Make" />
         <SidebarFolder name="Model" />
         <SidebarFolder name="Milage" />
-        <SidebarFolder name="Engine Capacity" />
+        <SidebarFolder name="Engine Capacity" /> */}
       </div>
     </aside>
   );
