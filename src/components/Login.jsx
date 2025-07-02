@@ -52,6 +52,8 @@ const Login = () => {
   const {isloadingOwner, errorOwner, owner} = useSelector((state) => state.ownerAuth)
   const {isloadingUser, errorUser, user} = useSelector((state) => state.userAuth)
 
+ 
+
   const setToNull = () => setFormData({
     email: "",
     password: "",
@@ -82,10 +84,11 @@ const Login = () => {
     else {
       try {
         const resultAction = await dispatch(ownerLogin(formData));
+        const userId = owner.owners._id
         if (ownerLogin.fulfilled.match(resultAction)) {
           setToNull( )
           toast.success(resultAction.payload.message);
-          Navigate("/owner/dashboard")
+          Navigate(`/owner/dashboard/${userId}`)
         } else {
           const errorMessage = resultAction.payload || "Registration failed!";
           toast.error(errorMessage);

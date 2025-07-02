@@ -27,12 +27,12 @@ function App() {
         <OwnerPortalDashboardLayout/>
       ),
       children:[
-     { path:"dashboard", element:<OwnerPortalDashboard/>},
-     { path:"profile", element:<OwnerPortalProfile/>},
-     { path:"portal-create-listings", element:<OwnerPortalCreateListings/>},
-     { path:"portal-Show-listings", element:<OwnerPortalShowListings/>},
-     { path:"portal-settings", element:<OwnerPortalSettings/>},
-     { path:"portal-Show-listings", element:<OwnerPortalProfile/>},
+     { path:"dashboard/:id", element:<OwnerPortalDashboard/>},
+     { path:"profile/:id", element:<OwnerPortalProfile/>},
+     { path:"portal-create-listings/:id", element:<OwnerPortalCreateListings/>},
+     { path:"portal-Show-listings/:id", element:<OwnerPortalShowListings/>},
+     { path:"portal-settings/:id", element:<OwnerPortalSettings/>},
+     { path:"portal-Show-listings/:id", element:<OwnerPortalProfile/>},
       ]
     },
     {
