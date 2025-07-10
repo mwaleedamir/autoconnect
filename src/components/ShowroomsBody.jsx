@@ -1,199 +1,158 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillGridFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa6";
 // import { CarsListings } from "../consts/carsLists.js";
 import Button from "../utils/Button";
 import SaveButton from "./SaveButton";
+import { Grid, List, Heart, MapPin, Fuel, Gauge, Car, Calendar } from 'lucide-react';
+import { get } from "../services/apiEndpoint";
+
 
 const ShowroomsBody = () => {
   const [grid, setGrid] = useState(false);
-  const CarsListings = [
-    {
-      _id: "1",
-      userId: "123",
-      carMake: "Toyota",
-      carName: "Corolla",
-      mileage: 50000,
-      engineCapacity: 1800,
-      color: "White",
-      varients: "Altis Grande",
-      carPrice: "42 Lacs",
-      images: "/images/toyota.jpg"
-    },
-    {
-      _id: "2",
-      userId: "123",
-      carMake: "Honda",
-      carName: "Civic",
-      mileage: 35000,
-      engineCapacity: 1500,
-      color: "Black",
-      varients: "Turbo RS",
-      carPrice: "50 Lacs",
-      images: "/images/toyota.jpg"
-    },
-    {
-      _id: "3",
-      userId: "456",
-      carMake: "Suzuki",
-      carName: "Alto",
-      mileage: 25000,
-      engineCapacity: 660,
-      color: "Red",
-      varients: "VXL AGS",
-      carPrice: "22 Lacs",
-      images: "/images/toyota.jpg"
-    },
-    {
-      _id: "4",
-      userId: "789",
-      carMake: "KIA",
-      carName: "Sportage",
-      mileage: 12000,
-      engineCapacity: 2000,
-      color: "Blue",
-      varients: "AWD",
-      carPrice: "70 Lacs",
-      images: "/images/toyota.jpg"
-    },
-    {
-      _id: "5",
-      userId: "123",
-      carMake: "Hyundai",
-      carName: "Tucson",
-      mileage: 10000,
-      engineCapacity: 2000,
-      color: "Silver",
-      varients: "Ultimate",
-      carPrice: "65 Lacs",
-      images: "/images/toyota.jpg"
+  const [carsData, setCarsData] = useState([])
+
+  useEffect(()=>{
+    const fetchCarsData = async () =>{
+      try {
+        const getCarsData = await get(`/api/create`)
+        console.log("getCarsData",getCarsData.data)
+        console.log("getCarsData images",getCarsData.data.images[0])
+        setCarsData(getCarsData.data)
+      } catch (error) {
+        console.log(error)
+      }
     }
-  ];
+    fetchCarsData()
+  },[])
   
   return (
-    <div className="">
-      <div className="flex gap-1 justify-end items-center pb-2  ">
-        <button
-          onClick={() => setGrid(true)}
-          className={`flex items-center px-2 py-1 rounded-md border ${grid
-            ? "bg-[#6b451a] hover:bg-[#47341d] text-white "
-            : " text-gray-700  hover:bg-gray-300"}`}
-        >
-          <BsFillGridFill />
-        </button>
-        <button
-          onClick={() => setGrid(false)}
-          className={`flex items-center px-2 py-1 rounded-md border ${!grid
-            ? "bg-[#6b451a] hover:bg-[#47341d] text-white "
-            : " text-gray-700 border-gray-300 hover:bg-gray-300"}`}
-        >
-          <FaListUl />
-        </button>
-      </div>
+    <div>
+  <div className="flex gap-1 justify-end items-center pb-2">
+    <button
+      onClick={() => setGrid(true)}
+      className={`flex items-center px-2 py-1 rounded-md border ${grid
+        ? "bg-[#6b451a] hover:bg-[#47341d] text-white"
+        : "text-gray-700 hover:bg-gray-300"}`}
+    >
+      <BsFillGridFill />
+    </button>
+    <button
+      onClick={() => setGrid(false)}
+      className={`flex items-center px-2 py-1 rounded-md border ${!grid
+        ? "bg-[#6b451a] hover:bg-[#47341d] text-white"
+        : "text-gray-700 border-gray-300 hover:bg-gray-300"}`}
+    >
+      <FaListUl />
+    </button>
+  </div>
 
-      <div
-        className={`grid bg-white ${grid
-          ? `grid-cols-4 gap-2 w-full max-sm:grid-cols-2`
-          : `w-full grid-cols-1 gap-3  max-w-screen max-sm:px-0 lg:px-8 `}`}
-      >
-        {CarsListings.length > 0
-          ? CarsListings.map(car =>
-              <div
-                key={car._id}
-                className={`border border-gray-200 bg-white hover:border-2 shadow-xl hover:shadow-[#bc9a71] rounded-lg ${grid
-                  ? ` bg-opacity-60 gap-2`
-                  : `flex overflow-hidden h-48 items-center px-2 gap-3`}`}
-              >
-                <div className={`  ${grid
-                          ? ``
-                          : `flex-1`}`}>
-                  {car.images && car.images.length > 0
-                    ? <img
-                        className={` justify-self-center rounded-md  ${grid
-                          ? `w-[90%] size-44 m-2`
-                          : `m-2  h-40 w-full `}`}
-                        src={car.images}
-                        alt={car.carName}
-                      />
-                    : <p
-                        className={` items-center justify-center h-56  rounded-lg ${grid
-                          ? ``
-                          : ``}`}
-                      >
-                        No image available
-                      </p>}
-                </div>
+  <div
+    className={`grid bg-white ${grid
+      ? `grid-cols-4 gap-2 w-full max-sm:grid-cols-2`
+      : `w-full grid-cols-1 gap-3 max-w-screen max-sm:px-0 lg:px-8`}`}
+  >
+    {carsData.length > 0
+      ? carsData.map(car =>
+          <div
+            key={car._id}
+            className={`group hover:shadow-card-hover transition-all duration-300 hover:scale-[1.02] bg-gradient-card border-0 shadow-card border border-gray-200 bg-white hover:border-2 shadow-xl hover:shadow-[#bc9a71] rounded-lg ${grid
+              ? `bg-opacity-60 gap-2 flex-col`
+              : `flex overflow-hidden h-48 items-center px-2 gap-3 flex-row`}`}
+          >
+            {/* Image Section */}
+            <div className={`relative ${grid ? `w-full h-48` : `w-1/3 h-full flex-1`}`}>
+              {car.images ? (
+                 <img
+                 className={`w-full h-full object-cover justify-self-center rounded-md ${grid
+                   ? `rounded-t-lg`
+                   : `rounded-l-lg`}`}
+                 src={`http://localhost:8000/uploads/${car.images[0]}`}
+                 alt={`${car.carMake} ${car.carName}`}
+               />
+              ) : (
                 <div
-                  className={`flex items-center justify-center bg-white ${grid
-                    ? `flex  `
-                    : `flex-2 h-full`}`}
+                  className={`w-full h-full bg-muted flex items-center justify-center ${grid
+                    ? `rounded-t-lg`
+                    : `rounded-l-lg`}`}
                 >
-                  <div
-                    className={`bg-white flex-col justify-self-center ${grid
-                      ? ` w-[90%] gap-3 space-y-3`
-                      : `flex  w-full flex-1 gap-3 `}`}
-                  >
-                    <div
-                      className={`flex max-sm:text-md text-md text-gray-700 justify-between tracking-wide ${grid
-                        ? ``
-                        : ``}`}
-                    >
-                      <h1 className="font-extrabold flex items-center">
-                        {car.carMake} {car.carName}
-                      </h1>
-                      <p>
-                        <SaveButton />
-                      </p>
-                    </div>
-
-                      <div
-                        className={`grid  gap-1 font-semibold text-xs text-gray-600 bg-white  ${grid
-                          ? ` place-items-left grid-cols-2 `
-                          : `grid-cols-4 justify-items-center h-full `}`}
-                      >
-                        <p className={`${grid ? `` : ``}`}>
-                          {car.mileage} Km
-                        </p>
-                        <p className=" ">
-                          {car.engineCapacity} CC
-                        </p>
-                        {!grid &&
-                          <p className="">
-                            {car.color}
-                          </p>}
-                        {!grid &&
-                          <p className={`${grid ? `col-span-2` : ``}`}>
-                            {car.varients}
-                          </p>}
-                      </div>
-                      <div>
-                      <p className="text-sm ">
-                         updated {car.engineCapacity} days
-                        </p>
-                      </div>
-                  </div>
-
-                  </div>
-                  <div
-                    className={`flex bg-white ${grid
-                      ? `justify-center p-3  items-center`
-                      : `flex-col items-center justify-center flex-1 h-[60%]`}`}
-                  >
-                    <p className="flex-2 text-md  max-sm:text-md font-bold text-gray-800 ">
-                      {car.carPrice} PKR
-                    </p>
-                    <Button
-                      className="transition p-1  text-white bg-[#6b451a] duration-300 rounded-md justify-items-center  ease-in-out transform hover:scale-110"
-                      name="More detail"
-                    />
-                  </div>
+                  <Car className="h-12 w-12 text-muted-foreground" />
+                </div>
+              )}
+              <div className="absolute top-2 right-2">
+                <SaveButton />
               </div>
-            )
-          : <p className="text-center text-gray-700 w-full">
-              No car data found
-            </p>}
-      </div>
-    </div>
+            </div>
+
+            {/* Content Section */}
+            <div className={`p-4 ${grid ? `flex-1` : `flex-1 flex flex-col justify-between`}`}>
+              {/* Header */}
+              <div className="space-y-3">
+                <div className="flex items-start justify-between">
+                  <h3 className="font-bold text-lg text-foreground leading-tight">
+                    {car.carMake} {car.carName}
+                  </h3>
+                </div>
+
+                {/* Specifications */}
+                <div
+                  className={`grid gap-2 text-sm text-muted-foreground ${grid
+                    ? `grid-cols-2`
+                    : `grid-cols-2 lg:grid-cols-4`}`}
+                >
+                  <div className="flex items-center gap-1">
+                    <Gauge className="h-3 w-3" />
+                    <span className="truncate">{car.mileage} km</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Fuel className="h-3 w-3" />
+                    <span className="truncate">{car.engineCapacity} CC</span>
+                  </div>
+                  {(!grid || window.innerWidth >= 1024) && (
+                    <>
+                      <div className="flex items-center gap-1">
+                        <div className="h-3 w-3 rounded-full border-2 border-current" />
+                        <span className="truncate">{car.color}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Car className="h-3 w-3" />
+                        <span className="truncate">{car.varients}</span>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* Updated info */}
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <Calendar className="h-3 w-3" />
+                  <span>Updated {car.engineCapacity} days ago</span>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className={`mt-4 ${grid ? `space-y-3` : `flex items-end justify-between`}`}>
+                <div className="text-xl font-bold text-primary">
+                  {car.carPrice} PKR
+                </div>
+                <button
+                  variant="premium"
+                  size={grid ? "default" : "sm"}
+                  className={`transition p-1 text-white bg-[#6b451a] duration-300 rounded-md justify-items-center ease-in-out transform hover:scale-110 ${grid ? `w-full` : ``}`}
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        )
+      : <div className="col-span-full text-center py-12">
+          <Car className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+          <p className="text-lg text-muted-foreground">No cars available</p>
+          <p className="text-sm text-muted-foreground">Check back later for new listings</p>
+        </div>
+    }
+  </div>
+</div>
   );
 };
 

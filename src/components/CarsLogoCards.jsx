@@ -1,8 +1,16 @@
 import React from "react";
 import Carousel from "../utils/Carousel";
-import { carouselItems } from "../consts/carsLogos";
+// import { carouselItems } from "../consts/carsLogos";w
 
 const CarsLogoCards = () => {
+  const carouselItems = [
+    { image: "/images/bmw.jpg", logo: "/images/bmwLogo.png" },
+    { image: "/images/toyota.jpg", logo: "/images/ToyotaLogo.png" },
+    { image: "/images/honda.jpg", logo: "/images/hondaLogo.png" },
+    { image: "/images/bmw.jpg", logo: "/images/hyundaiLogo.png" },
+    { image: "/images/toyota.jpg", logo: "/images/kiaLogo.png" }
+  ];
+  
   return (
     <div className="bg-white pb-6">
       <div className="w-[80%] text-[#6b451a]  justify-self-center font- "> 
