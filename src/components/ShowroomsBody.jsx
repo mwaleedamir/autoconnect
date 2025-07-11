@@ -12,12 +12,22 @@ const ShowroomsBody = () => {
   const [grid, setGrid] = useState(false);
   const [carsData, setCarsData] = useState([])
 
+  // const timeAndDate = carsData.time
+  const dateObj = new Date(carsData.time);
+  let date = "Invalid";
+  let time = "Invalid";
+
+if (!isNaN(dateObj.getTime())) {
+  date = dateObj.toISOString().split("T")[0];
+  time = dateObj.toISOString().split("T")[1].split("Z")[0];
+}
+
+
   useEffect(()=>{
     const fetchCarsData = async () =>{
       try {
         const getCarsData = await get(`/api/create`)
         console.log("getCarsData",getCarsData.data)
-        console.log("getCarsData images",getCarsData.data.images[0])
         setCarsData(getCarsData.data)
       } catch (error) {
         console.log(error)
@@ -58,16 +68,16 @@ const ShowroomsBody = () => {
             key={car._id}
             className={`group hover:shadow-card-hover transition-all duration-300 hover:scale-[1.02] bg-gradient-card border-0 shadow-card border border-gray-200 bg-white hover:border-2 shadow-xl hover:shadow-[#bc9a71] rounded-lg ${grid
               ? `bg-opacity-60 gap-2 flex-col`
-              : `flex overflow-hidden h-48 items-center px-2 gap-3 flex-row`}`}
+              : `flex overflow-hidden h-52 items-center px-2 gap-3 flex-row`}`}
           >
             {/* Image Section */}
-            <div className={`relative ${grid ? `w-full h-48` : `w-1/3 h-full flex-1`}`}>
+            <div className={`relative ${grid ? `w-full h-full ` : `w-1/3 h-full flex-1`}`}>
               {car.images ? (
                  <img
                  className={`w-full h-full object-cover justify-self-center rounded-md ${grid
                    ? `rounded-t-lg`
                    : `rounded-l-lg`}`}
-                 src={`http://localhost:8000/uploads/${car.images[0]}`}
+                 src={`https://autoconnect-backend.onrender.com/images/${car.images[0]}`}
                  alt={`${car.carMake} ${car.carName}`}
                />
               ) : (
@@ -125,15 +135,16 @@ const ShowroomsBody = () => {
                 {/* Updated info */}
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <Calendar className="h-3 w-3" />
-                  <span>Updated {car.engineCapacity} days ago</span>
+                  <span>Updated <span>Updated on {date} at {time}</span> </span>
                 </div>
               </div>
 
               {/* Footer */}
               <div className={`mt-4 ${grid ? `space-y-3` : `flex items-end justify-between`}`}>
-                <div className="text-xl font-bold text-primary">
-                  {car.carPrice} PKR
+                <div className="text-primary flex justify-start items-center gap-2">
+                 <h1 className="text-xl font-bold ">{car.carPrice}  </h1><h2 className="text-sm" >lacs pkr</h2>
                 </div>
+                
                 <button
                   variant="premium"
                   size={grid ? "default" : "sm"}

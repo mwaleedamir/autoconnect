@@ -4,7 +4,7 @@ import axios from "axios";
 export const createListing = createAsyncThunk('createListing', async(data, {rejectWithValue} ) => {
     try {
         console.log("data", data)
-        const response = axios.post('http://localhost:8000/api/create',data, {
+        const response = axios.post('https://autoconnect-backend.onrender.com/api/create',data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
