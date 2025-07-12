@@ -5,7 +5,7 @@ const instance = axios.create({
     headers:{
         "Content-Type":"application/json",
     },
-    withCredentials: false
+    withCredentials: true
 })
 
 export const get= (url,params) => instance.get(url,{params})
