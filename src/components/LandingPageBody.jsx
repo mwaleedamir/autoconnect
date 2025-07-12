@@ -5,11 +5,12 @@ import CarsLogoCards from "./CarsLogoCards";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { FiLock } from "react-icons/fi";
 import { FaCarSide } from "react-icons/fa6";
-
+import ChatBot from "./ChatBot";
+import { Link } from "react-router-dom";
 
 const LandingPageLayoutBody = () => {
   return (  
-    <div className="bg-gray-100  min-h-screen ">
+    <div className="  bg-gray-100  min-h-screen ">
       <Navbar />
       <CarsLogoCards/>
       
@@ -89,12 +90,12 @@ const LandingPageLayoutBody = () => {
         <p className="text-lg mb-8">
           Join thousands of users who trust AutoConnectPK.
         </p>
-        <a
-          href="/signup"
+        <Link
+          to="/signup"
           className="bg-yellow-400 text-[#6b451a] font-bold py-3 px-6 rounded-lg hover:bg-yellow-300 transition-all"
         >
           Sign Up Now
-        </a>
+        </Link>
       </section>
 
       {/* Footer */}
@@ -111,6 +112,7 @@ const LandingPageLayoutBody = () => {
           </a>
         </div>
       </footer>
+      <ChatBot/>
     </div>
   );
 };

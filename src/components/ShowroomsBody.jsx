@@ -59,7 +59,7 @@ if (!isNaN(dateObj.getTime())) {
 
   <div
     className={`grid bg-white ${grid
-      ? `grid-cols-4 gap-2 w-full max-sm:grid-cols-2`
+      ? `grid-cols-3 gap-2 w-full max-sm:grid-cols-2`
       : `w-full grid-cols-1 gap-3 max-w-screen max-sm:px-0 lg:px-8`}`}
   >
     {carsData.length > 0
@@ -71,7 +71,7 @@ if (!isNaN(dateObj.getTime())) {
               : `flex overflow-hidden h-52 items-center px-2 gap-3 flex-row`}`}
           >
             {/* Image Section */}
-            <div className={`relative ${grid ? `w-full h-full ` : `w-1/3 h-full flex-1`}`}>
+            <div className={`relative ${grid ? `w-full h-48 ` : `w-1/3 h-full flex-1`}`}>
               {car.images ? (
                  <img
                  className={`w-full h-full object-cover justify-self-center rounded-md ${grid
