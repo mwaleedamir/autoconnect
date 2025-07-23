@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPageLayout from "./pages/LandingPageLayout";
-import Showrooms from "./pages/Showrooms";
+import Showrooms from "./pages/ShowroomsLayout";
 import SellForMe from "./pages/SellForMe";
 import ShopLayout from "./pages/ShopLayout";
 import Signup from "./components/Signup";
@@ -11,8 +11,8 @@ import OwnerPortalCreateListings from "./pages/OwnerPortalCreateListings";
 import OwnerPortalSettings from "./pages/OwnerPortalSettings";
 import OwnerPortalShowListings from "./pages/OwnerPortalShowListings";
 import OwnerPortalDashboard from "./pages/OwnerPortalDashboard";
-
-
+import ShowroomsLandingPage from "./pages/ShowroomsLandingPage";
+import CarDetails from "./components/CarDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -39,8 +39,11 @@ function App() {
       path: "/marketplace",
       element: <Showrooms />,
       children: [
+       { path: ":id", element: <ShowroomsLandingPage/> },
       ]
-    }
+    },
+    { path: "marketplace/cardetails/:id", element: <CarDetails/> },
+    
   ]);
 
   return (

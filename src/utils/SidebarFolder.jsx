@@ -1,24 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import ShowroomsName from "../consts/showroomsName.json"
+// import ShowroomsName from "../consts/showroomsName.json"
 import  CarsMake  from "../consts/carMake.json";
 import CarCategories from "../consts/carCatogories.json";
 import LocationShowrooms from "../consts/locationShowrooms.json";
 import CarColors from "../consts/carColors.json";
 import CarEngineCapacities from "../consts/carEngineCapacity.json";
 import {v4 as uuidv4} from "uuid"
+import { get } from "../services/apiEndpoint";
+
 
 const SidebarFolder = ({ name }) => {
   const [open, setOpen] = useState(false);
   const [activeShowroom, setActiveShowroom] = useState(null);
- const [year, setYear] = useState(1990); // Selected year
+ const [year, setYear] = useState(1990); 
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: currentYear - 1990 + 1 }, (_, index) => 1990 + index);
+  const [showroomNames, setShowroomNames] = useState([])
+  const [isLoadingOwner, setIsLoadingOwner] = useState(false)
 
-  const filteredShowrooms = ShowroomsName.filter((showroom) =>
-    showroom.showroomName.toLowerCase().includes()
-  );
+  useEffect( () =>{
+    const fetchingOwners = async() =>{
+      try {
+        setIsLoadingOwner(true)
+        const Owners = await get("/auth/owner")
+        console.log("ShowroomsName",Owners.data)
+        setShowroomNames(Owners.data)
+      } catch (error) {
+        console.log("Error",error)
+      } finally {
+        setIsLoadingOwner(false)
+      }
+    }
+    fetchingOwners()
+  },[])
+
+
 
   const handleShowroomClick = (showroomId) => {
     setActiveShowroom(showroomId);
@@ -38,23 +56,26 @@ const SidebarFolder = ({ name }) => {
           </div>}
       </button>
 
-      {open &&
+      {!open &&
         name === "Showrooms" &&
         <div className="flex flex-col text-white items-stretch justify-start px-2  my-2 w-[90%] max-h-64 overflow-y-auto scrollbar-hide justify-self-center text-xs space-y-1">
-        {(filteredShowrooms.length === 0 ? ShowroomsName : filteredShowrooms).map(showroom => (
+         {isLoadingOwner ? (
+        <p>Loading please wait...</p>
+      ) : (
+        showroomNames.map((showroom) => (
           <Link
-            key={showroom._id}
-            to={`/user/marketplace/${showroom._id}`}
-            className={`p-2 w-full flex justify-between items-center hover:text-white hover:bg-amber-950 rounded-md shadow-md transition-colors ${
-              activeShowroom === showroom._id
-                ? "bg-[#6b451a] text-white"
-                : "bg-white text-[#6b451a] hover:bg-opacity-90"
-            }`}
-            onClick={() => handleShowroomClick(showroom._id)}
-          >
-            <span className="truncate">{showroom.showroomName}</span>
-          </Link>
-        ))}
+          key={showroom._id}
+          to={`/marketplace/${showroom._id}`}
+          className={`p-2 w-full flex justify-between items-center hover:text-white hover:bg-amber-950 rounded-md shadow-md transition-colors ${
+            activeShowroom === showroom._id
+              ? "bg-[#6b451a] text-white"
+              : "bg-white text-[#6b451a] hover:bg-opacity-90"
+          }`}
+          onClick={() => handleShowroomClick(showroom._id)}
+        >
+          <span className="truncate">{showroom.showroomName}</span>
+        </Link>
+      )))}
       </div>
       }
 

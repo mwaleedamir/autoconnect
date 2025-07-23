@@ -14,7 +14,7 @@ const OwnerPortalDashboardLayout = () => {
         <div className="flex">
           <OwnerPortalSidebar />
           <main className="flex-2">
-            <Outlet />
+            <Outlet /> 
           </main>
         </div>
 
