@@ -26,28 +26,26 @@ const ChatBot = () => {
 
   const sendMessage = async () => {
     if (!input.trim()) return;
-
+  
     const userMessage = { sender: 'user', text: input, timestamp: new Date() };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setIsTyping(true);
-
+  
     try {
-      
-      const response = dispatch(Chatbot(messages))
-
-      const data = await res.json();
-
-      setTimeout(() => {
-        const botMessage = { sender: 'bot', text: data.response, timestamp: new Date() };
-        setMessages((prev) => [...prev, botMessage]);
-        setIsTyping(false);
-      }, 1000);
+      const response = await dispatch(Chatbot({ message: input })).unwrap(); // ✅ send only message
+      const botMessage = { sender: 'bot', text: response.response, timestamp: new Date() }; // ✅ use response.response
+      setMessages((prev) => [...prev, botMessage]);
     } catch (err) {
       console.error('Error:', err);
-      setIsTyping(false);
-      const errorMessage = { sender: 'bot', text: 'Sorry, I encountered an error. Please try again.', timestamp: new Date() };
+      const errorMessage = {
+        sender: 'bot',
+        text: 'Sorry, I encountered an error. Please try again.',
+        timestamp: new Date()
+      };
       setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsTyping(false);
     }
   };
 
