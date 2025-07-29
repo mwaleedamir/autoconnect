@@ -100,16 +100,16 @@ const Signup = () => {
     }
 
     // Check if owner fields are filled when userType is owner
-    if (formData.userType === "owner") {
-      if (!formData.showroomName.trim()) {
-        toast.error("Showroom name is required for owners!");
-        return false;
-      }
-      if (!formData.address.trim()) {
-        toast.error("Showroom address is required for owners!");
-        return false;
-      }
-    }
+    // if (formData.userType === "owner") {
+    //   if (!formData.showroomName) {
+    //     toast.error("Showroom name is required for owners!");
+    //     return false;
+    //   }
+    //   if (!formData.address) {
+    //     toast.error("Showroom address is required for owners!");
+    //     return false;
+    //   }
+    // }
 
     return true;
   };
@@ -137,8 +137,11 @@ const Signup = () => {
           const errorMessage = resultAction.payload || "Registration failed!";
           toast.error(errorMessage);
         }
-      } else {
+      } else if (formData.userType === "owner") {
+        console.log("data",formData)
         const resultAction = await dispatch(createOwner(formData));
+        
+        console.log("resultAction",resultAction)
         // Check if the action was fulfilled
         if (createOwner.fulfilled.match(resultAction)) {
           setToNull()

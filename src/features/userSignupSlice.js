@@ -40,7 +40,7 @@ const userDetailsSignup = createSlice({
 
 
 export const createOwner = createAsyncThunk ('ownerDetails/createOwner', async (data, {rejectWithValue}) =>{
-    console.log("data ", data)
+    console.log("data in slice", data)
     const response = await post('/auth/owner',data)
     console.log("response ", response)
     try {

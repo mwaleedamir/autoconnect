@@ -17,7 +17,7 @@ const TopNavbar = ({ className }) => {
 
   const { isloadingOwner, errorOwner, owner } = useSelector((state) => state.ownerAuth)
   const { isloadingUser, errorUser, user } = useSelector((state) => state.userAuth)
-
+  const OwnerId = owner?.data?._id;
   return (
     <div className={` ${className}`}>
       <div className="flex h-16 w-[80%] max-sm:w-[100%] overflow-none justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
@@ -86,7 +86,7 @@ const TopNavbar = ({ className }) => {
 
                     )}
                     {owner ?
-                      <Link to="/owner/dashboard">
+                      <Link to={`/owner/dashboard/${OwnerId}`}>
                         <div className="flex gap-1 text-gray-800 text-lg py-2 hover:bg-gray-100 transition-colors duration-300">
                           <MdSpaceDashboard /> Portal
                         </div></Link>

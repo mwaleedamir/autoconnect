@@ -1,7 +1,7 @@
 import React from "react";
 // import Navbar from "../components/Navbar";
 import ShowroomSidebar from "../components/ShowroomSlidebar";
-import ShowroomsBody from "../components/ShowroomsBody";
+// import ShowroomsBody from "../components/ShowroomsBody";
 import TopNavbar from "../components/TopNavbar";
 import {Outlet} from "react-router"
 

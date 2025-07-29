@@ -33,8 +33,8 @@ const ChatBot = () => {
     setIsTyping(true);
   
     try {
-      const response = await dispatch(Chatbot({ message: input })).unwrap(); // ✅ send only message
-      const botMessage = { sender: 'bot', text: response.response, timestamp: new Date() }; // ✅ use response.response
+      const response = await dispatch(Chatbot({ message: input })).unwrap(); 
+      const botMessage = { sender: 'bot', text: response.response, timestamp: new Date() }; 
       setMessages((prev) => [...prev, botMessage]);
     } catch (err) {
       console.error('Error:', err);
