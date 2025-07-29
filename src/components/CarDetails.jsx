@@ -38,7 +38,7 @@ const CarDetails = () => {
         const getShowroomData = await get(`/auth/owner/${getCarData.data.userId}`)
         setShowroomData(getShowroomData.data)
       }
-    } catch (error) {
+    } catch (error) { 
       console.log(error)
     } finally {
       setLoading(false)

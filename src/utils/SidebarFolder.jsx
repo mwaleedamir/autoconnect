@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 // import ShowroomsName from "../consts/showroomsName.json"
-import  CarsMake  from "../consts/carMake.json";
-import CarCategories from "../consts/carCatogories.json";
-import LocationShowrooms from "../consts/locationShowrooms.json";
-import CarColors from "../consts/carColors.json";
-import CarEngineCapacities from "../consts/carEngineCapacity.json";
+// import  CarsMake  from "../consts/carMake.json";
+// import CarCategories from "../consts/carCatogories.json";
+// import LocationShowrooms from "../consts/locationShowrooms.json";
+// import  from "../consts/carColors.json";
+// import CarEngineCapacities from "../consts/carEngineCapacity.json";
 import {v4 as uuidv4} from "uuid"
 import { get } from "../services/apiEndpoint";
 
@@ -19,6 +19,93 @@ const SidebarFolder = ({ name }) => {
   const years = Array.from({ length: currentYear - 1990 + 1 }, (_, index) => 1990 + index);
   const [showroomNames, setShowroomNames] = useState([])
   const [isLoadingOwner, setIsLoadingOwner] = useState(false)
+
+  const CarsMake = [
+    { "Name": "Honda","value": "honda" },
+    { "Name": "Suzuki", "value": "suzuki" },
+    { "Name": "Toyota", "value": "toyota" },
+    { "Name": "MG", "value": "mg" },
+    { "Name": "Nissan", "value": "nissan" },
+    { "Name": "Daihatsu", "value": "daihatsu" },
+    { "Name": "Hyundai", "value": "hyundai" },
+    { "Name": "Kia", "value": "kia" },
+    { "Name": "Changan", "value": "changan" },
+    { "Name": "FAW", "value": "faw" },
+    { "Name": "Chevrolet", "value": "chevrolet" },
+    { "Name": "Ford", "value": "ford" },
+    { "Name": "Mercedes-Benz", "value": "mercedes" },
+    { "Name": "BMW", "value": "bmw" },
+    { "Name": "Audi", "value": "audi" },
+    { "Name": "Jeep", "value": "jeep" },
+    { "Name": "Lexus", "value": "lexus" },
+    { "Name": "Subaru", "value": "subaru" },
+    { "Name": "Mitsubishi", "value": "mitsubishi" },
+    { "Name": "Peugeot", "value": "peugeot" }
+  ]
+  
+  // const CarCategories = [
+  //   { "Name": "Sedan" },
+  //   { "Name": "Hatchback" },
+  //   { "Name": "SUV" },
+  //   { "Name": "Crossover" },
+  //   { "Name": "Coupe" },
+  //   { "Name": "Convertible" },
+  //   { "Name": "Pickup Truck" },
+  //   { "Name": "Van" },
+  //   { "Name": "Minivan" },
+  //   { "Name": "Wagon" },
+  //   { "Name": "Jeep" },
+  //   { "Name": "Electric" },
+  //   { "Name": "Hybrid" },
+  //   { "Name": "Luxury" },
+  //   { "Name": "Sports Car" },
+  //   { "Name": "Off-Road" }
+  // ]
+  
+//   const CarColors = [
+//   { "name": "Attitude Black", "commonName": "Black", "hex": "#0C0C0C" },
+//   { "name": "Silver Metallic", "commonName": "Silver", "hex": "#C0C0C0" },
+//   { "name": "Super White", "commonName": "White", "hex": "#FDFDFD" },
+//   { "name": "White Pearl", "commonName": "Pearl White", "hex": "#F7F7F7" },
+//   { "name": "Graphite Gray", "commonName": "Gray", "hex": "#6E6E6E" },
+//   { "name": "Gun Metallic", "commonName": "Dark Gray", "hex": "#4B4B4B" },
+//   { "name": "Milano Red", "commonName": "Red", "hex": "#B22222" },
+//   { "name": "Wine Red", "commonName": "Maroon", "hex": "#800000" },
+//   { "name": "Urban Blue", "commonName": "Blue", "hex": "#1F3A93" },
+//   { "name": "Midnight Blue", "commonName": "Navy Blue", "hex": "#191970" },
+//   { "name": "Sand Beige", "commonName": "Beige", "hex": "#E4D6C8" },
+//   { "name": "Coffee Brown", "commonName": "Brown", "hex": "#8B4513" },
+//   { "name": "Jungle Green", "commonName": "Green", "hex": "#013220" },
+//   { "name": "Burnt Orange", "commonName": "Orange", "hex": "#CC5500" },
+//   { "name": "Champagne Gold", "commonName": "Golden", "hex": "#D4AF37" }
+// ]
+
+const LocationShowrooms = [
+    {"Name":"Jail Road"},
+    {"Name":"JohrTown"},
+    {"Name":"TownShip"},
+    {"Name":"Samanabad"}
+]
+
+const CarEngineCapacities =[
+    { "Name": "660 cc" },
+    { "Name": "800 cc" },
+    { "Name": "1000 cc" },
+    { "Name": "1200 cc" },
+    { "Name": "1300 cc" },
+    { "Name": "1500 cc" },
+    { "Name": "1600 cc" },
+    { "Name": "1800 cc" },
+    { "Name": "2000 cc" },
+    { "Name": "2400 cc" },
+    { "Name": "2500 cc" },
+    { "Name": "3000 cc" },
+    { "Name": "3500 cc" },
+    { "Name": "4000 cc" },
+    { "Name": "4500 cc" },
+    { "Name": "5000 cc" }
+  ]  
+
 
   useEffect( () =>{
     const fetchingOwners = async() =>{
@@ -133,7 +220,24 @@ const SidebarFolder = ({ name }) => {
         size={6}
         multiple
       >
-        {CarCategories.map((yr) => (
+        { [
+    { "Name": "Sedan" },
+    { "Name": "Hatchback" },
+    { "Name": "SUV" },
+    { "Name": "Crossover" },
+    { "Name": "Coupe" },
+    { "Name": "Convertible" },
+    { "Name": "Pickup Truck" },
+    { "Name": "Van" },
+    { "Name": "Minivan" },
+    { "Name": "Wagon" },
+    { "Name": "Jeep" },
+    { "Name": "Electric" },
+    { "Name": "Hybrid" },
+    { "Name": "Luxury" },
+    { "Name": "Sports Car" },
+    { "Name": "Off-Road" }
+  ].map((yr) => (
           <option key={yr} value={yr} className="flex bg-white text-[#6b451a] relative px-3 rounded-md my-1 mx-3 py-1 hover:bg-amber-950 hover:text-white ">
             {yr.Name}
           </option>
@@ -177,16 +281,32 @@ const SidebarFolder = ({ name }) => {
         size={6}
         multiple
       >
-        {CarColors.map((yr) => (
+        { [
+  { "name": "Attitude Black", "commonName": "Black", "hex": "#0C0C0C" },
+  { "name": "Silver Metallic", "commonName": "Silver", "hex": "#C0C0C0" },
+  { "name": "Super White", "commonName": "White", "hex": "#FDFDFD" },
+  { "name": "White Pearl", "commonName": "Pearl White", "hex": "#F7F7F7" },
+  { "name": "Graphite Gray", "commonName": "Gray", "hex": "#6E6E6E" },
+  { "name": "Gun Metallic", "commonName": "Dark Gray", "hex": "#4B4B4B" },
+  { "name": "Milano Red", "commonName": "Red", "hex": "#B22222" },
+  { "name": "Wine Red", "commonName": "Maroon", "hex": "#800000" },
+  { "name": "Urban Blue", "commonName": "Blue", "hex": "#1F3A93" },
+  { "name": "Midnight Blue", "commonName": "Navy Blue", "hex": "#191970" },
+  { "name": "Sand Beige", "commonName": "Beige", "hex": "#E4D6C8" },
+  { "name": "Coffee Brown", "commonName": "Brown", "hex": "#8B4513" },
+  { "name": "Jungle Green", "commonName": "Green", "hex": "#013220" },
+  { "name": "Burnt Orange", "commonName": "Orange", "hex": "#CC5500" },
+  { "name": "Champagne Gold", "commonName": "Golden", "hex": "#D4AF37" }
+].map((yr) => (
           <option
-          key={yr.Name}
-          value={yr.Name}
+          key={uuidv4()}
+          value={yr.name}
           className="flex justify-between bg-white text-[#6b451a] relative px-3 rounded-md my-1 mx-3 py-1 hover:text-white"
           style={{ backgroundColor: undefined}} // default background
           onMouseOver={(e) => e.currentTarget.style.backgroundColor = yr.hex}
           onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'white'}
         >
-          {yr.Name}
+          {yr.name}
         </option>
         ))}
       </select>
@@ -213,11 +333,9 @@ const SidebarFolder = ({ name }) => {
       </select>
       </div>
       }
-
-
-
     </div>
   );
 };
 
 export default SidebarFolder;
+

@@ -6,25 +6,28 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { AiOutlineShop } from "react-icons/ai";
 import { useSelector } from "react-redux";
+// import {ownerAuth} from "../app/store"
 
 const TopNavbar = ({ className }) => {
   const [toggle, setToggle] = useState(false);
   const Links = [
+    { svg: <FaCarSide />, label: "Home", to: "/" },
     { svg: <FaCarSide />, label: "Showrooms", to: "/marketplace" },
-    { svg: <FaCarSide />, label: "Sell", to: "/sell-for-me" },
-    { svg: <AiOutlineShop />, label: "Shop", to: "/shop" },
+    // { svg: <FaCarSide />, label: "Sell", to: "/sell-for-me" },
+    // { svg: <AiOutlineShop />, label: "Shop", to: "/shop" },
   ];
 
   const { isloadingOwner, errorOwner, owner } = useSelector((state) => state.ownerAuth)
   const { isloadingUser, errorUser, user } = useSelector((state) => state.userAuth)
-  const OwnerId = owner?.data?._id;
+  const OwnerId = owner?.owners?._id;
+  console.log("OwnerId",OwnerId)
   return (
     <div className={` ${className}`}>
       <div className="flex h-16 w-[80%] max-sm:w-[100%] overflow-none justify-self-center justify-between items-center p-3 text-sm text-white  sm:px-0 sm:py-1  relative ">
         <div className="text-center">
           <Link to="/">
-            <p className="">AutoCorner</p>
-            <p className="text-white text-[12px]">Let's Connect together</p>
+            <p className="">AutoConnect</p>
+            <p className="text-white text-[12px]">Let's Connect for the future</p>
           </Link>
         </div>
         <div className="hidden min-md:flex gap-3 items-center">
@@ -39,7 +42,7 @@ const TopNavbar = ({ className }) => {
           )}
 
           {owner ?
-            <Link to="/owner/dashboard">
+            <Link to={`/owner/dashboard/${OwnerId}`}>
               <div className="flex gap-1 items-center">
                 <MdSpaceDashboard /> Portal
               </div></Link>
@@ -47,6 +50,18 @@ const TopNavbar = ({ className }) => {
             <Link to="/login">
               <div className="flex gap-1 items-center">
                 <MdOutlinePersonOutline /> Login
+              </div></Link>
+          }
+
+          {owner ?
+            <Link to={`/owner/dashboard/${OwnerId}`}>
+              <div className="flex gap-1 items-center">
+                
+              </div></Link>
+            :
+            <Link to="/signup">
+              <div className="flex gap-1 items-center">
+                <MdOutlinePersonOutline /> Signup
               </div></Link>
           }
         </div>

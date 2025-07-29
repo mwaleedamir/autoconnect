@@ -5,6 +5,7 @@ import { ownerDetailsReducer, userDetailsReducer } from "../features/userSignupS
 import { ownerAuthReducer, userAuthReducer } from '../features/userLoginSlice';
 import { createListingsReducer } from '../features/createListingsSlice';
 import { chatBotReducer } from '../features/chatBotSlice';
+import { carApi } from '../features/carsFiltersSlice'
 
 
 export const store = configureStore({
@@ -17,5 +18,9 @@ export const store = configureStore({
     ownerAuth : ownerAuthReducer,
     createListing : createListingsReducer,
     Chatbot : chatBotReducer,
+    [carApi.reducerPath]: carApi.reducer,
+    // carFilter : ?
   },
+   middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(carApi.middleware),
 })  
