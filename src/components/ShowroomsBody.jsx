@@ -68,7 +68,7 @@ const ShowroomsBody = () => {
                   {car.images ? (
                     <img
                       className={`w-full h-full object-cover justify-self-center rounded-md ${grid ? `rounded-t-lg` : `rounded-l-lg`}`}
-                      src={`https://autoconnect-backend.onrender.com/images/${car.images[0]}`}
+                      src={car.images[0]}
                       alt={`${car.carMake} ${car.carName}`}
                     />
                   ) : (

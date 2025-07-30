@@ -1,53 +1,56 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { BsFillGridFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa6";
-
-// import SaveButton from "../features/savebuttonSlice";
-import { Grid, List, Heart, MapPin, Fuel, Gauge, Car, Calendar } from 'lucide-react';
-import { get } from "../services/apiEndpoint";
-
-
+import { Grid, List, Heart, MapPin, Fuel, Gauge, Car, Calendar, Trash2, Pencil } from 'lucide-react';
+import { get, remove } from "../services/apiEndpoint";
 
 const OwnerPortalShowListings = () => {
   const [grid, setGrid] = useState(false);
-  const [carsData, setCarsData] = useState([])
-  const [loading, setLoading] = useState(true)
-  
+  const [carsData, setCarsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+
   const formatDateTime = (timeString) => {
     if (!timeString) return { date: "Invalid", time: "Invalid" };
-    
     const dateObj = new Date(timeString);
-    let date = "Invalid";
-    let time = "Invalid";
+    if (isNaN(dateObj.getTime())) return { date: "Invalid", time: "Invalid" };
+    return {
+      date: dateObj.toISOString().split("T")[0],
+      time: dateObj.toISOString().split("T")[1].split("Z")[0],
+    };
+  };
 
-    if (!isNaN(dateObj.getTime())) {
-      date = dateObj.toISOString().split("T")[0];
-      time = dateObj.toISOString().split("T")[1].split("Z")[0];
+  const fetchCarsData = async () => {
+    try {
+      const getCarsData = await get(`/api/create`);
+      setCarsData(getCarsData.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-    
-    return { date, time };
+  };
+
+  const handleDelete = async (carId) => {
+    try {
+      await remove(`/api/delete/${carId}`);
+      setCarsData(prev => prev.filter(car => car._id !== carId));
+    } catch (err) {
+      console.error("Failed to delete:", err);
+    }
   };
 
   useEffect(() => {
-    const fetchCarsData = async () => {
-      try {
-        const getCarsData = await get(`/api/create`)
-        console.log("getCarsData",getCarsData)
-        setCarsData(getCarsData.data)
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setLoading(false)
-      }
-    }
+    fetchCarsData();
+  }, []);
 
-    fetchCarsData()
-  }, [])
+  const filteredCars = id ? carsData.filter(car => car.userId === id) : [];
 
   if (loading) {
-    return <h1 className="min-h-screen flex justify-center items-center font-bold">Loading...</h1>
+    return <h1 className="min-h-screen flex justify-center items-center font-bold">Loading...</h1>;
   }
-  
+
   return (
     <div className="m-2">
       <div className="flex gap-1 justify-end items-center pb-2">
@@ -74,10 +77,9 @@ const OwnerPortalShowListings = () => {
           ? `grid-cols-3 gap-2 w-full max-sm:grid-cols-2`
           : `w-full grid-cols-1 gap-3 max-w-screen max-sm:px-0 lg:px-8`}`}
       >
-        {carsData.length > 0
-          ? carsData.map(car => {
-              const { date, time } = formatDateTime(car.time || car.createdAt || car.updatedAt);
-              
+        {filteredCars.length > 0
+          ? filteredCars.map(car => {
+              const { date } = formatDateTime(car.time || car.createdAt || car.updatedAt);
               return (
                 <div
                   key={car._id}
@@ -85,47 +87,31 @@ const OwnerPortalShowListings = () => {
                     ? `bg-opacity-60 gap-2 flex-col`
                     : `flex overflow-hidden h-52 items-center px-2 gap-3 flex-row`}`}
                 >
-                  {/* Image Section */}
                   <div className={`relative ${grid ? `w-full h-48 ` : `w-1/3 h-full flex-1`}`}>
                     {car.images ? (
-                       <img
-                       className={`w-full h-full object-cover justify-self-center rounded-md ${grid
-                         ? `rounded-t-lg`
-                         : `rounded-l-lg`}`}
-                       src={`https://autoconnect-backend.onrender.com/images/${car.images[0]}`}
-                       alt={`${car.carMake} ${car.carName}`}
-                     />
-                    ) : (
-                      <div
-                        className={`w-full h-full bg-muted flex items-center justify-center ${grid
+                      <img
+                        className={`w-full h-full object-cover justify-self-center rounded-md ${grid
                           ? `rounded-t-lg`
                           : `rounded-l-lg`}`}
-                      >
+                        src={car.images[0]}
+                        alt={`${car.carMake} ${car.carName}`}
+                      />
+                    ) : (
+                      <div className={`w-full h-full bg-muted flex items-center justify-center ${grid ? `rounded-t-lg` : `rounded-l-lg`}`}>
                         <Car className="h-12 w-12 text-muted-foreground" />
                       </div>
                     )}
-                   
                   </div>
 
-                  {/* Content Section */}
                   <div className={`p-4 ${grid ? `flex-1` : `flex-1 flex flex-col justify-between`}`}>
-                    {/* Header */}
                     <div className="space-y-3">
                       <div className="flex items-start justify-between">
                         <h3 className="font-bold text-lg text-foreground leading-tight">
                           {car.carMake} {car.carName}
                         </h3>
-                         <div className="">
-                      {/* <SaveButton /> */}
-                    </div>
                       </div>
 
-                      {/* Specifications */}
-                      <div
-                        className={`grid gap-2 text-sm text-muted-foreground ${grid
-                          ? `grid-cols-2`
-                          : `grid-cols-2 lg:grid-cols-4`}`}
-                      >
+                      <div className={`grid gap-2 text-sm text-muted-foreground ${grid ? `grid-cols-2` : `grid-cols-2 lg:grid-cols-4`}`}>
                         <div className="flex items-center gap-1">
                           <Gauge className="h-3 w-3" />
                           <span className="truncate">{car.mileage} km</span>
@@ -147,28 +133,26 @@ const OwnerPortalShowListings = () => {
                           </>
                         )}
                       </div>
-
-                      {/* Updated info */}
                       <div className="flex items-center gap-1 text-xs text-muted-foreground">
                         <Calendar className="h-3 w-3" />
                         <span>Updated {date} </span>
                       </div>
                     </div>
 
-                    {/* Footer */}
                     <div className={`mt-4 ${grid ? `space-y-3` : `flex items-end justify-between`}`}>
                       <div className="text-primary flex justify-start items-center gap-2">
-                       <h1 className="text-xl font-bold ">{car.carPrice}  </h1><h2 className="text-sm" >lacs pkr</h2>
+                        <h1 className="text-xl font-bold ">{car.carPrice}</h1>
+                        <h2 className="text-sm">lacs pkr</h2>
                       </div>
-                      
-                      {/* <Link
-                        to = {`/marketplace/cardetails/${car._id}`}
-                        variant="premium"
-                        size={grid ? "default" : "sm"}
-                        className={`transition p-1 text-white bg-[#6b451a] duration-300 rounded-md justify-items-center ease-in-out transform hover:scale-110 ${grid ? `w-full` : ``}`}
-                      >
-                        View Details
-                      </Link> */}
+
+                      <div className="flex gap-2">
+                        <button onClick={() => handleDelete(car._id)} className="bg-red-600 text-white px-2 py-1 text-sm rounded-md hover:bg-red-700">
+                          <Trash2 size={16} />
+                        </button>
+                        <button onClick={() => alert("Edit logic here")} className="bg-blue-600 text-white px-2 py-1 text-sm rounded-md hover:bg-blue-700">
+                          <Pencil size={16} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

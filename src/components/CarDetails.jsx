@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { 
-  Car, 
-  Calendar, 
-  Gauge, 
-  Fuel, 
-  MapPin, 
-  Heart, 
-  Share2, 
-  Phone, 
-  Mail, 
+import {
+  Car,
+  Calendar,
+  Gauge,
+  Fuel,
+  MapPin,
+  Heart,
+  Share2,
+  Phone,
+  Mail,
   Clock,
   CheckCircle,
   ArrowLeft,
@@ -32,13 +32,13 @@ const CarDetails = () => {
     try {
       const getCarData = await get(`/api/create/${id}`)
       setCarData(getCarData.data)
-      
+
       // Fetch showroom data using userId
       if (getCarData.data.userId) {
         const getShowroomData = await get(`/auth/owner/${getCarData.data.userId}`)
         setShowroomData(getShowroomData.data)
       }
-    } catch (error) { 
+    } catch (error) {
       console.log(error)
     } finally {
       setLoading(false)
@@ -51,21 +51,21 @@ const CarDetails = () => {
 
   const formatDateTime = (timeString) => {
     if (!timeString) return { date: "Invalid", time: "Invalid" }
-    
+
     const dateObj = new Date(timeString)
     if (isNaN(dateObj.getTime())) return { date: "Invalid", time: "Invalid" }
-    
+
     const date = dateObj.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     })
-    
+
     const time = dateObj.toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit'
     })
-    
+
     return { date, time }
   }
 
@@ -128,7 +128,7 @@ const CarDetails = () => {
               <div className="relative h-96 bg-gray-100">
                 {carData.images && carData.images.length > 0 ? (
                   <img
-                    src={`https://autoconnect-backend.onrender.com/images/${carData.images[currentImageIndex]}`}
+                    src={carData.images[currentImageIndex]} // Cloudinary image is a full URL
                     alt={`${cleanString(carData.carMake)} ${cleanString(carData.carName)}`}
                     className="w-full h-full object-cover"
                   />
@@ -137,7 +137,7 @@ const CarDetails = () => {
                     <Car className="h-20 w-20 text-gray-400" />
                   </div>
                 )}
-                
+
                 {/* Image Navigation */}
                 {carData.images && carData.images.length > 1 && (
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
@@ -145,16 +145,16 @@ const CarDetails = () => {
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
-                        className={`w-3 h-3 rounded-full transition-all ${
-                          index === currentImageIndex 
-                            ? 'bg-white' 
+                        className={`w-3 h-3 rounded-full transition-all ${index === currentImageIndex
+                            ? 'bg-white'
                             : 'bg-white/50 hover:bg-white/75'
-                        }`}
+                          }`}
                       />
                     ))}
                   </div>
                 )}
               </div>
+
             </div>
 
             {/* Car Information */}
@@ -182,7 +182,7 @@ const CarDetails = () => {
                       <p className="font-semibold">{carData.mileage?.toLocaleString()} km</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                     <Fuel className="h-5 w-5 text-[#6b451a]" />
                     <div>
