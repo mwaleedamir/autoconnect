@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { RxDragHandleHorizontal, RxCross1 } from "react-icons/rx";
-import { FaCarSide } from "react-icons/fa";
+import { FaCarSide, FaHome } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { AiOutlineShop } from "react-icons/ai";
@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 const TopNavbar = ({ className }) => {
   const [toggle, setToggle] = useState(false);
   const Links = [
-    { svg: <FaCarSide />, label: "Home", to: "/" },
+    { svg: <FaHome />, label: "Home", to: "/" },
     { svg: <FaCarSide />, label: "Showrooms", to: "/marketplace" },
     // { svg: <FaCarSide />, label: "Sell", to: "/sell-for-me" },
     // { svg: <AiOutlineShop />, label: "Shop", to: "/shop" },

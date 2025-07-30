@@ -36,6 +36,7 @@ const CarDetails = () => {
       // Fetch showroom data using userId
       if (getCarData.data.userId) {
         const getShowroomData = await get(`/auth/owner/${getCarData.data.userId}`)
+        console.log("getShowroomData",getShowroomData)
         setShowroomData(getShowroomData.data)
       }
     } catch (error) {

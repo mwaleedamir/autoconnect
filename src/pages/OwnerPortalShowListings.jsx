@@ -83,7 +83,7 @@ const OwnerPortalShowListings = () => {
               return (
                 <div
                   key={car._id}
-                  className={`group hover:shadow-card-hover transition-all duration-300 hover:scale-[1.02] bg-gradient-card border-0 shadow-card border border-gray-200 bg-white hover:border-2 shadow-xl hover:shadow-[#bc9a71] rounded-lg ${grid
+                  className={`group hover:shadow-card-hover transition-all duration-300 hover:scale-[1.02] bg-gradient-card shadow-card border border-gray-200 bg-white hover:border-2 shadow-xl hover:shadow-[#bc9a71] rounded-lg ${grid
                     ? `bg-opacity-60 gap-2 flex-col`
                     : `flex overflow-hidden h-52 items-center px-2 gap-3 flex-row`}`}
                 >
