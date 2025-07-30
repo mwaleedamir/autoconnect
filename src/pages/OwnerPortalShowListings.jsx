@@ -34,7 +34,7 @@ const OwnerPortalShowListings = () => {
 
   const handleDelete = async (carId) => {
     try {
-      await remove(`/api/delete/${carId}`);
+      await remove(`/api/create/${carId}`);
       setCarsData(prev => prev.filter(car => car._id !== carId));
     } catch (err) {
       console.error("Failed to delete:", err);
